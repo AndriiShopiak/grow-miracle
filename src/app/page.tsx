@@ -1,50 +1,5 @@
 import Image from "next/image";
-
-// Дані про продукцію
-const products = [
-  {
-    id: 1,
-    name: "Помідори черрі",
-    price: "45 грн/кг",
-    description: "Солодкі черрі помідори з власного саду",
-    image: "/tomatoes.jpg"
-  },
-  {
-    id: 2,
-    name: "Огірки",
-    price: "35 грн/кг",
-    description: "Хрусткі свіжі огірки",
-    image: "/cucumbers.jpg"
-  },
-  {
-    id: 3,
-    name: "Морква",
-    price: "25 грн/кг",
-    description: "Солодка морква без хімії",
-    image: "/carrots.jpg"
-  },
-  {
-    id: 4,
-    name: "Яблука",
-    price: "40 грн/кг",
-    description: "Соковиті яблука різних сортів",
-    image: "/apples.jpg"
-  },
-  {
-    id: 5,
-    name: "Картопля",
-    price: "20 грн/кг",
-    description: "Молода картопля з власного поля",
-    image: "/potatoes.jpg"
-  },
-  {
-    id: 6,
-    name: "Цибуля",
-    price: "30 грн/кг",
-    description: "Свіжа цибуля для приготування",
-    image: "/onions.jpg"
-  }
-];
+import { products, cultivars } from "@/data/products";
 
 export default function Home() {
   return (
@@ -119,6 +74,59 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Секція сортів/культур з детальним описом */}
+      <section id="cultivars" className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold text-center text-secondary mb-12">
+            Детальні описи сортів
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {cultivars.map((item) => (
+              <article key={item.title} className="bg-light-green/40 border border-light-green rounded-lg shadow-sm p-6">
+                <header className="mb-4">
+                  <h4 className="text-2xl font-semibold text-secondary">{item.title}</h4>
+                  <p className="text-sm text-gray-700">Вид: {item.species}</p>
+                </header>
+                <dl className="space-y-2 text-gray-800">
+                  <div>
+                    <dt className="font-medium">Термін дозрівання</dt>
+                    <dd>{item.ripeningTerm}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Плоди</dt>
+                    <dd>{item.fruits}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Смак</dt>
+                    <dd>{item.taste}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Самоплідність</dt>
+                    <dd>{item.selfFertility}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Врожайність</dt>
+                    <dd>{item.yield}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Морозостійкість</dt>
+                    <dd>{item.frostResistance}</dd>
+                  </div>
+                </dl>
+                <div className="mt-6 border-t border-gray-200 pt-4">
+                  <h5 className="text-lg font-semibold text-secondary mb-2">Особливості вирощування</h5>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-800">
+                    <li><span className="font-medium">Посадка:</span> {item.cultivation.planting}</li>
+                    <li><span className="font-medium">Догляд:</span> {item.cultivation.care}</li>
+                    <li><span className="font-medium">Період плодоношення:</span> {item.cultivation.bearingPeriod}</li>
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
         </div>
