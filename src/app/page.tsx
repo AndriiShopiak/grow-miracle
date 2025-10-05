@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { products, cultivars } from "@/data/products";
+import { cultivars } from "@/data/products";
 
 export default function Home() {
   return (
@@ -58,19 +58,41 @@ export default function Home() {
             Наша продукція
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <div key={product.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="h-48 bg-light-green flex items-center justify-center">
-                  <span className="text-6xl">🥕</span>
+            {cultivars.map((item) => (
+              <div
+                key={item.id}
+                className="group bg-white rounded-2xl shadow-md ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-0.5"
+              >
+                <div className="relative h-56">
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent opacity-90" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
+                    <h4 className="text-white text-xl font-semibold drop-shadow">{item.title}</h4>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-semibold text-secondary mb-2">{product.name}</h4>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-accent">{product.price}</span>
-                    <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
-                      Замовити
-                    </button>
+                <div className="p-5">
+                  <div className="mb-3 flex flex-wrap gap-2">
+                    <span className="inline-flex items-center rounded-full bg-light-green/60 text-secondary text-xs font-medium px-2.5 py-1">
+                      {item.species}
+                    </span>
+                    <span className="inline-flex items-center rounded-full bg-accent/10 text-accent text-xs font-medium px-2.5 py-1">
+                      Дозрівання: {item.ripeningTerm}
+                    </span>
+                  </div>
+                  <p
+                    className="text-gray-700 text-sm leading-6"
+                    style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+                  >
+                    {item.fruits}
+                  </p>
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-xs text-gray-500">Морозостійкість: {item.frostResistance}</span>
+                    <a
+                      href={`/products/${item.id}`}
+                      className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium transition-colors hover:bg-secondary"
+                    >
+                      Деталі
+                    </a>
                   </div>
                 </div>
               </div>
@@ -79,58 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Секція сортів/культур з детальним описом */}
-      <section id="cultivars" className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center text-secondary mb-12">
-            Детальні описи сортів
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {cultivars.map((item) => (
-              <article key={item.title} className="bg-light-green/40 border border-light-green rounded-lg shadow-sm p-6">
-                <header className="mb-4">
-                  <h4 className="text-2xl font-semibold text-secondary">{item.title}</h4>
-                  <p className="text-sm text-gray-700">Вид: {item.species}</p>
-                </header>
-                <dl className="space-y-2 text-gray-800">
-                  <div>
-                    <dt className="font-medium">Термін дозрівання</dt>
-                    <dd>{item.ripeningTerm}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Плоди</dt>
-                    <dd>{item.fruits}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Смак</dt>
-                    <dd>{item.taste}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Самоплідність</dt>
-                    <dd>{item.selfFertility}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Врожайність</dt>
-                    <dd>{item.yield}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Морозостійкість</dt>
-                    <dd>{item.frostResistance}</dd>
-                  </div>
-                </dl>
-                <div className="mt-6 border-t border-gray-200 pt-4">
-                  <h5 className="text-lg font-semibold text-secondary mb-2">Особливості вирощування</h5>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-800">
-                    <li><span className="font-medium">Посадка:</span> {item.cultivation.planting}</li>
-                    <li><span className="font-medium">Догляд:</span> {item.cultivation.care}</li>
-                    <li><span className="font-medium">Період плодоношення:</span> {item.cultivation.bearingPeriod}</li>
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Секція про нас */}
       <section id="about" className="bg-light-green py-16">
