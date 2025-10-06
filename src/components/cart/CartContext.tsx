@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 
 export type CartItem = {
   id: number;
@@ -66,34 +66,47 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, initialState, () => {
-    if (typeof window === "undefined") return initialState;
-    try {
-      const raw = localStorage.getItem("cart:v1");
-      return raw ? (JSON.parse(raw) as CartState) : initialState;
-    } catch {
-      return initialState;
-    }
-  });
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
+    // Load from localStorage after hydration
+    try {
+      const raw = localStorage.getItem("cart:v1");
+      if (raw) {
+        const savedState = JSON.parse(raw) as CartState;
+        if (savedState.items.length > 0) {
+          // Restore saved state
+          savedState.items.forEach(item => {
+            dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image }, qty: item.qty });
+          });
+        }
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
     try {
       localStorage.setItem("cart:v1", JSON.stringify(state));
     } catch {}
-  }, [state]);
+  }, [state, isHydrated]);
 
   const value = useMemo<CartContextType>(() => {
     const totalItems = state.items.reduce((sum, i) => sum + i.qty, 0);
     return {
       items: state.items,
-      totalItems,
+      totalItems: isHydrated ? totalItems : 0,
       add: (item, qty) => dispatch({ type: "add", item, qty }),
       remove: (id) => dispatch({ type: "remove", id }),
       inc: (id) => dispatch({ type: "inc", id }),
       dec: (id) => dispatch({ type: "dec", id }),
       clear: () => dispatch({ type: "clear" }),
     };
-  }, [state]);
+  }, [state, isHydrated]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
