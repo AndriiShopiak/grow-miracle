@@ -1,6 +1,5 @@
 import Image from "next/image";
 // import Link from "next/link";
-import CartLink from "@/components/cart/CartLink";
 import ProductGrid from "@/components/ProductGrid";
 
 export default function Home() {
@@ -29,7 +28,6 @@ export default function Home() {
               <a href="#products" className="text-white hover:text-light-green transition-colors">Продукція</a>
               <a href="#about" className="text-white hover:text-light-green transition-colors">Про нас</a>
               <a href="#contact" className="text-white hover:text-light-green transition-colors">Контакти</a>
-              <CartLink />
             </nav>
           </div>
         </div>

@@ -1,16 +1,34 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/components/cart/CartContext";
 
 export default function CartLink() {
   const { totalItems } = useCart();
   return (
-    <Link href="/cart" className="relative inline-flex items-center gap-2 text-white">
-      <span className="hidden sm:inline">Кошик</span>
-      <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-accent text-white text-sm">
-        {totalItems}
-      </span>
+    <Link 
+      href="/cart" 
+      className="fixed bottom-6 right-6 z-50 bg-accent hover:bg-light-accent text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group"
+      title="Кошик"
+    >
+      <div className="relative">
+        {/* Іконка кошика */}
+        <Image 
+          src="/icons/grocery-store.png" 
+          alt="Кошик" 
+          width={24} 
+          height={24}
+          className="w-6 h-6"
+        />
+        
+        {/* Лічильник товарів */}
+        {totalItems > 0 && (
+          <span className="absolute -top-2 -right-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white text-xs font-bold">
+            {totalItems}
+          </span>
+        )}
+      </div>
     </Link>
   );
 }
