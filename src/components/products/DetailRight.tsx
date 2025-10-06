@@ -38,6 +38,10 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <dt className="font-medium">Морозостійкість</dt>
           <dd>{item.frostResistance}</dd>
         </div>
+        <div>
+          <dt className="font-medium">Підщепа</dt>
+          <dd>{item.rootstock}</dd>
+        </div>
       </dl>
 
       <div className="mt-8 border-t border-gray-200 pt-5">

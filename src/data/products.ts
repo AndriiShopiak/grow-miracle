@@ -18,6 +18,7 @@ export type Cultivar = {
   selfFertility: string; // Самоплідність
   yield: string; // Врожайність
   frostResistance: string; // Морозостійкість
+  rootstock: string; // Підщепа
   cultivation: {
     planting: string; // Посадка
     care: string; // Догляд
@@ -91,6 +92,7 @@ export const cultivars: Cultivar[] = [
       "сорт партенокарпічний, запилювачів не потребує",
     yield: "дуже висока",
     frostResistance: "висока (до -29 C°)",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting:
         "Для посадки потрібне сонячне місце, захищене від вітру.",
@@ -114,6 +116,7 @@ export const cultivars: Cultivar[] = [
     yield: "—",
     frostResistance:
       "висока, до -28°C, у перші роки бажано зимове укриття",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting: "—",
       care: "—",
@@ -138,6 +141,7 @@ export const cultivars: Cultivar[] = [
     yield: "— (конкретні дані відсутні)",
     frostResistance:
       "висока зимостійкість (заслуговує уваги завдяки стійкості)",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting: "—",
       care: "—",
@@ -158,6 +162,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance:
       "доросле дерево витримує морози до -27°C",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care:
@@ -179,6 +184,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока, до ~50 кг з дерева",
     frostResistance:
       "висока, витримує морози до -26°C",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting: "сонячне, захищене від вітру місце",
       care:
@@ -202,6 +208,7 @@ export const cultivars: Cultivar[] = [
       "сорт партенокарпічний, запилювачів не потребує",
     yield: "дуже висока",
     frostResistance: "висока (до -26°C)",
+    rootstock: "хурма вірджинська",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care:
