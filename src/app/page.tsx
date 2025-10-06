@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { cultivars } from "@/data/products";
+// import Link from "next/link";
+import CartLink from "@/components/cart/CartLink";
+import ProductGrid from "@/components/ProductGrid";
 
 export default function Home() {
   return (
@@ -27,6 +29,7 @@ export default function Home() {
               <a href="#products" className="text-white hover:text-light-green transition-colors">Продукція</a>
               <a href="#about" className="text-white hover:text-light-green transition-colors">Про нас</a>
               <a href="#contact" className="text-white hover:text-light-green transition-colors">Контакти</a>
+              <CartLink />
             </nav>
           </div>
         </div>
@@ -57,47 +60,7 @@ export default function Home() {
           <h3 className="text-3xl font-bold text-center text-secondary mb-12">
             Наша продукція
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cultivars.map((item) => (
-              <div
-                key={item.id}
-                className="group bg-white rounded-2xl shadow-md ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-0.5"
-              >
-                <div className="relative h-56">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent opacity-90" />
-                  <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
-                    <h4 className="text-white text-xl font-semibold drop-shadow">{item.title}</h4>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <div className="mb-3 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center rounded-full bg-light-green/60 text-secondary text-xs font-medium px-2.5 py-1">
-                      {item.species}
-                    </span>
-                    <span className="inline-flex items-center rounded-full bg-accent/10 text-accent text-xs font-medium px-2.5 py-1">
-                      Дозрівання: {item.ripeningTerm}
-                    </span>
-                  </div>
-                  <p
-                    className="text-gray-700 text-sm leading-6"
-                    style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
-                  >
-                    {item.fruits}
-                  </p>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Морозостійкість: {item.frostResistance}</span>
-                    <a
-                      href={`/products/${item.id}`}
-                      className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium transition-colors hover:bg-secondary"
-                    >
-                      Деталі
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProductGrid />
         </div>
       </section>
 
@@ -148,3 +111,5 @@ export default function Home() {
     </div>
   );
 }
+
+// ProductGrid moved to client component under src/components/ProductGrid.tsx
