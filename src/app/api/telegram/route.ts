@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
+import { UNIFIED_PRICE, UNIFIED_PRICE_VALUE } from '@/data/products';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -36,14 +37,18 @@ export async function POST(request: NextRequest) {
     message += `\n📦 *Замовлення:*\n`;
     
     let totalItems = 0;
+    let totalAmount = 0;
     items.forEach((item: any, index: number) => {
-      message += `${index + 1}. ${item.title} - ${item.qty} шт.\n`;
+      const itemSum = item.qty * UNIFIED_PRICE_VALUE;
+      message += `${index + 1}. ${item.title} — ${item.qty} шт. × ${UNIFIED_PRICE} = ${itemSum.toLocaleString('uk-UA')} грн\n`;
       totalItems += item.qty;
+      totalAmount += itemSum;
     });
     
     message += `\n📊 *Підсумок:*\n`;
     message += `Всього позицій: ${items.length}\n`;
     message += `Загальна кількість: ${totalItems} шт.\n`;
+    message += `До сплати: ${totalAmount.toLocaleString('uk-UA')} грн\n`;
     message += `\n⏰ Час замовлення: ${new Date().toLocaleString('uk-UA')}`;
 
     // Відправляємо повідомлення в Telegram

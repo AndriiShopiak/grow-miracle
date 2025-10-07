@@ -34,6 +34,7 @@ export type Cultivar = {
 
 // Unified price for all items
 export const UNIFIED_PRICE = "800 грн/шт";
+export const UNIFIED_PRICE_VALUE = 800; // numeric value in UAH per unit
 
 export const products: BasicProduct[] = [
   {

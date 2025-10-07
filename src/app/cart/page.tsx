@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
+import { UNIFIED_PRICE, UNIFIED_PRICE_VALUE } from "@/data/products";
 import OrderForm from "@/components/OrderForm";
 
 export default function CartPage() {
   const { items, inc, dec, remove, clear, totalItems } = useCart();
-
+  const formatCurrency = (value: number) => `${value.toLocaleString("uk-UA")} грн`;
+  const totalAmount = items.reduce((sum, item) => sum + item.qty * UNIFIED_PRICE_VALUE, 0);
   const isEmpty = items.length === 0;
 
   return (
@@ -30,11 +32,16 @@ export default function CartPage() {
                 </div>
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold text-secondary">{item.title}</h2>
+                  <div className="mt-1 text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{UNIFIED_PRICE}</span></div>
                   <div className="mt-2 inline-flex items-center rounded-md border border-gray-300">
                     <button onClick={() => dec(item.id)} className="px-3 py-1 hover:bg-gray-100">-</button>
                     <span className="px-4">{item.qty}</span>
                     <button onClick={() => inc(item.id)} className="px-3 py-1 hover:bg-gray-100">+</button>
                   </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-gray-500">Сума</div>
+                  <div className="text-base font-semibold text-secondary">{formatCurrency(item.qty * UNIFIED_PRICE_VALUE)}</div>
                 </div>
                 <button onClick={() => remove(item.id)} className="text-sm text-red-600 hover:underline">Видалити</button>
               </div>
@@ -43,7 +50,11 @@ export default function CartPage() {
           <div className="space-y-6">
             <div className="bg-white rounded-xl p-6 shadow">
               <h3 className="text-xl font-semibold text-secondary mb-4">Підсумок</h3>
-              <p className="text-gray-700 mb-6">Позицій: {totalItems}</p>
+              <p className="text-gray-700">Позицій: {totalItems}</p>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="text-gray-700">До сплати:</span>
+                <span className="text-2xl font-bold text-secondary">{formatCurrency(totalAmount)}</span>
+              </div>
               <button onClick={clear} className="w-full rounded-lg border border-gray-300 px-4 py-2 hover:bg-gray-50">
                 Очистити кошик
               </button>
