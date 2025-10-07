@@ -1,5 +1,6 @@
 import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
+import Gallery from "@/components/Gallery";
 import ProductGrid from "@/components/ProductGrid";
 
 export default function Home() {
@@ -75,7 +76,27 @@ export default function Home() {
         </div>
       </section>
 
-      
+      {/* Галерея прев’ю */}
+      <section className="py-16 bg-white/60">
+        <div className="container mx-auto px-4">
+          <div className="mb-6">
+            <h3 className="text-3xl font-bold text-center text-secondary">Світлини</h3>
+          </div>
+          <Gallery
+            images={Array.from({ length:6 }, (_, i) => ({ src: `/gallery/${i + 1}.jpg`, alt: `Сад, фото ${i + 1}` }))}
+            columns={3}
+            enableLightbox={false}
+          />
+          <div className="mt-8 text-center">
+            <Link
+              href="/gallery"
+              className="inline-block bg-accent text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-light-accent focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-white transition"
+            >
+              Більше фото
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Секція про нас */}
       <section id="about" className="bg-light-green py-16">
