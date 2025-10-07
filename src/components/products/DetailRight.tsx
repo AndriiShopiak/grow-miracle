@@ -12,7 +12,12 @@ export default function DetailRight({ item }: { item: Cultivar }) {
   return (
     <div>
       <h1 className="text-3xl font-bold text-secondary mb-3">{item.title}</h1>
-      <div className="text-xl font-semibold text-secondary mb-2">{UNIFIED_PRICE}</div>
+      <div className="mb-4">
+        <div className="inline-flex items-center gap-2 rounded-xl bg-light-green/60 px-4 py-2 ring-2 ring-accent">
+          <span className="text-3xl font-extrabold text-secondary">{UNIFIED_PRICE}</span>
+          <span className="text-[11px] font-medium uppercase tracking-wide text-accent bg-white/70 rounded px-2 py-0.5">за одиницю</span>
+        </div>
+      </div>
       <div className="mb-4 flex flex-wrap gap-2">
         <span className="inline-flex items-center rounded-full bg-light-green/60 text-secondary text-xs font-medium px-3 py-1">
           {item.species}
