@@ -509,7 +509,7 @@ export const cultivars: Cultivar[] = [
   },
   {
     id: 23,
-    title: "[Назва відсутня]",
+    title: "Г. Палян",
     species: "хурма східна",
     ripeningTerm: "пізній, кінець листопада",
     fruits: "крупні, маса (300-400 г)",
