@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
+import OrderForm from "@/components/OrderForm";
 
 export default function CartPage() {
   const { items, inc, dec, remove, clear, totalItems } = useCart();
@@ -39,14 +40,16 @@ export default function CartPage() {
               </div>
             ))}
           </div>
-          <aside className="bg-white rounded-xl p-6 shadow h-fit">
-            <h3 className="text-xl font-semibold text-secondary mb-4">Замовлення</h3>
-            <p className="text-gray-700 mb-6">Позицій: {totalItems}</p>
-            <div className="flex gap-3">
-              <button onClick={clear} className="rounded-lg border border-gray-300 px-4 py-2 hover:bg-gray-50">Очистити</button>
-              <Link href="#contact" className="rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">Оформити</Link>
+          <div className="space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-xl font-semibold text-secondary mb-4">Підсумок</h3>
+              <p className="text-gray-700 mb-6">Позицій: {totalItems}</p>
+              <button onClick={clear} className="w-full rounded-lg border border-gray-300 px-4 py-2 hover:bg-gray-50">
+                Очистити кошик
+              </button>
             </div>
-          </aside>
+            <OrderForm />
+          </div>
         </div>
       )}
     </div>
