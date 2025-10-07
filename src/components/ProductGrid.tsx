@@ -5,11 +5,16 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
+import Pagination from "./Pagination";
 
 export default function ProductGrid() {
   const { add, items } = useCart();
   const itemIdsInCart = useMemo(() => new Set(items.map((i) => i.id)), [items]);
   const [justAddedIds, setJustAddedIds] = useState<Set<number>>(new Set());
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9; // 3x3 grid
 
   useEffect(() => {
     // If an item is in the cart, remove it from justAdded after hydrate inconsistencies
@@ -23,7 +28,7 @@ export default function ProductGrid() {
       toRemove.forEach((id) => next.delete(id));
       setJustAddedIds(next);
     }
-  }, [itemIdsInCart]);
+  }, [itemIdsInCart, justAddedIds]);
 
   const markJustAdded = (id: number) => {
     const next = new Set(justAddedIds);
@@ -37,9 +42,33 @@ export default function ProductGrid() {
       });
     }, 1800);
   };
+
+  // Calculate pagination
+  const totalPages = Math.ceil(cultivars.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = cultivars.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of products section
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {cultivars.map((item) => (
+    <div>
+      {/* Products info */}
+      <div className="mb-6 text-center">
+        <p className="text-gray-600">
+          Показано {startIndex + 1}-{Math.min(endIndex, cultivars.length)} з {cultivars.length} продуктів
+        </p>
+      </div>
+      
+      {/* Products grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {currentProducts.map((item) => (
         <div
           key={item.id}
           className="group bg-white rounded-2xl shadow-md ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-0.5"
@@ -103,7 +132,15 @@ export default function ProductGrid() {
             </div>
           </div>
         </div>
-      ))}
+        ))}
+      </div>
+      
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
