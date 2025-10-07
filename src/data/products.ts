@@ -32,46 +32,49 @@ export type Cultivar = {
   diseaseResistance?: string; // Стійкість до хвороб
 };
 
+// Unified price for all items
+export const UNIFIED_PRICE = "800 грн/шт";
+
 export const products: BasicProduct[] = [
   {
     id: 1,
     name: "Помідори черрі",
-    price: "45 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Солодкі черрі помідори з власного саду",
     image: "/tomatoes.jpg",
   },
   {
     id: 2,
     name: "Огірки",
-    price: "35 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Хрусткі свіжі огірки",
     image: "/cucumbers.jpg",
   },
   {
     id: 3,
     name: "Морква",
-    price: "25 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Солодка морква без хімії",
     image: "/carrots.jpg",
   },
   {
     id: 4,
     name: "Яблука",
-    price: "40 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Соковиті яблука різних сортів",
     image: "/apples.jpg",
   },
   {
     id: 5,
     name: "Картопля",
-    price: "20 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Молода картопля з власного поля",
     image: "/potatoes.jpg",
   },
   {
     id: 6,
     name: "Цибуля",
-    price: "30 грн/кг",
+    price: UNIFIED_PRICE,
     description: "Свіжа цибуля для приготування",
     image: "/onions.jpg",
   },

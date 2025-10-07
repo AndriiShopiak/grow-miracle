@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
 import { useMemo } from "react";
 import type { Cultivar } from "@/data/products";
+import { UNIFIED_PRICE } from "@/data/products";
 
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
@@ -11,6 +12,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
   return (
     <div>
       <h1 className="text-3xl font-bold text-secondary mb-3">{item.title}</h1>
+      <div className="text-xl font-semibold text-secondary mb-2">{UNIFIED_PRICE}</div>
       <div className="mb-4 flex flex-wrap gap-2">
         <span className="inline-flex items-center rounded-full bg-light-green/60 text-secondary text-xs font-medium px-3 py-1">
           {item.species}

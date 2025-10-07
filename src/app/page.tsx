@@ -37,7 +37,7 @@ export default function Home() {
       <section className="relative py-20 md:py-28 min-h-[60vh]">
         {/* Фонове зображення */}
         <Image
-          src="/products/19.jpg"
+          src="/products/18.jpg"
           alt="Саджанці хурми"
           fill
           priority
