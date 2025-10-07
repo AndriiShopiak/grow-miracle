@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
 import Pagination from "./Pagination";
+import ProductFilter, { FilterOptions } from "./ProductFilter";
 
 export default function ProductGrid() {
   const { add, items } = useCart();
@@ -15,6 +16,13 @@ export default function ProductGrid() {
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9; // 3x3 grid
+  
+  // Filter state
+  const [filters, setFilters] = useState<FilterOptions>({
+    rootSystem: 'all',
+    species: 'all',
+    frostResistance: 'all'
+  });
 
   useEffect(() => {
     // If an item is in the cart, remove it from justAdded after hydrate inconsistencies
@@ -43,11 +51,40 @@ export default function ProductGrid() {
     }, 1800);
   };
 
+  // Filter products based on current filters
+  const filteredProducts = useMemo(() => {
+    return cultivars.filter(item => {
+      // Filter by root system
+      if (filters.rootSystem !== 'all' && item.rootSystem !== filters.rootSystem) {
+        return false;
+      }
+      
+      // Filter by species
+      if (filters.species !== 'all' && item.species !== filters.species) {
+        return false;
+      }
+      
+      // Filter by frost resistance
+      if (filters.frostResistance !== 'all') {
+        const frostText = item.frostResistance.toLowerCase();
+        const hasHigh = frostText.includes('до -25') || frostText.includes('до -26') || frostText.includes('до -27') || frostText.includes('до -28') || frostText.includes('до -29');
+        const hasMedium = frostText.includes('до -20') || frostText.includes('до -21') || frostText.includes('до -22') || frostText.includes('до -23') || frostText.includes('до -24');
+        const hasLow = frostText.includes('до -16') || frostText.includes('до -17') || frostText.includes('до -18') || frostText.includes('до -19');
+        
+        if (filters.frostResistance === 'high' && !hasHigh) return false;
+        if (filters.frostResistance === 'medium' && !hasMedium) return false;
+        if (filters.frostResistance === 'low' && !hasLow) return false;
+      }
+      
+      return true;
+    });
+  }, [filters]);
+
   // Calculate pagination
-  const totalPages = Math.ceil(cultivars.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProducts = cultivars.slice(startIndex, endIndex);
+  const currentProducts = filteredProducts.slice(startIndex, endIndex);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -57,12 +94,24 @@ export default function ProductGrid() {
       productsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const handleFilterChange = (newFilters: FilterOptions) => {
+    setFilters(newFilters);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
   return (
     <div>
+      {/* Filter component */}
+      <ProductFilter 
+        onFilterChange={handleFilterChange}
+        totalCount={cultivars.length}
+        filteredCount={filteredProducts.length}
+      />
+      
       {/* Products info */}
       <div className="mb-6 text-center">
         <p className="text-gray-600">
-          Показано {startIndex + 1}-{Math.min(endIndex, cultivars.length)} з {cultivars.length} продуктів
+          Показано {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} з {filteredProducts.length} продуктів
         </p>
       </div>
       
@@ -93,6 +142,13 @@ export default function ProductGrid() {
               </span>
               <span className="inline-flex items-center rounded-full bg-accent/10 text-accent text-xs font-medium px-2.5 py-1">
                 Дозрівання: {item.ripeningTerm}
+              </span>
+              <span className={`inline-flex items-center rounded-full text-xs font-medium px-2.5 py-1 ${
+                item.rootSystem === 'open' 
+                  ? 'bg-green-100 text-green-800' 
+                  : 'bg-blue-100 text-blue-800'
+              }`}>
+                {item.rootSystem === 'open' ? 'Відкрита коренева система' : 'Закрита коренева система'}
               </span>
             </div>
             <p

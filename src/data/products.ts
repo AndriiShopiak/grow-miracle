@@ -19,6 +19,7 @@ export type Cultivar = {
   yield: string; // Врожайність
   frostResistance: string; // Морозостійкість
   rootstock: string; // Підщепа
+  rootSystem: 'open' | 'closed'; // Тип кореневої системи
   cultivation: {
     planting: string; // Посадка
     care: string; // Догляд
@@ -97,6 +98,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "висока (до -29 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting:
         "Для посадки потрібне сонячне місце, захищене від вітру.",
@@ -121,6 +123,7 @@ export const cultivars: Cultivar[] = [
     frostResistance:
       "висока, до -28°C, у перші роки бажано зимове укриття",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "—",
       care: "—",
@@ -146,6 +149,7 @@ export const cultivars: Cultivar[] = [
     frostResistance:
       "висока зимостійкість (заслуговує уваги завдяки стійкості)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "—",
       care: "—",
@@ -167,6 +171,7 @@ export const cultivars: Cultivar[] = [
     frostResistance:
       "доросле дерево витримує морози до -27°C",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care:
@@ -189,6 +194,7 @@ export const cultivars: Cultivar[] = [
     frostResistance:
       "висока, витримує морози до -26°C",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "сонячне, захищене від вітру місце",
       care:
@@ -213,6 +219,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "висока (до -26°C)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care:
@@ -232,6 +239,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "висока (до -26 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -250,6 +258,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "висока (до -24 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -268,6 +277,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "висока (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -286,6 +296,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока",
     frostResistance: "висока (до -26 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -304,6 +315,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока",
     frostResistance: "досить теплолюбивий сорт (до -22 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -322,6 +334,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока",
     frostResistance: "нижче середнього (до -22 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -341,6 +354,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "середня (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -360,6 +374,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "середня (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -378,6 +393,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "низька (до -19 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -396,6 +412,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "низька (до -20 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -414,6 +431,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "низька (до -18 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -432,6 +450,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "низька (до -16 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -450,6 +469,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "середня (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -468,6 +488,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "середня (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -486,6 +507,7 @@ export const cultivars: Cultivar[] = [
     yield: "дуже висока",
     frostResistance: "середня (до -23 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -504,6 +526,7 @@ export const cultivars: Cultivar[] = [
     yield: "стабільно висока",
     frostResistance: "вище середньої (до -25 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -522,6 +545,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока",
     frostResistance: "висока (до -25 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -540,6 +564,7 @@ export const cultivars: Cultivar[] = [
     yield: "висока",
     frostResistance: "помірна (до -20 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -559,6 +584,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "низька (до -18 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -577,6 +603,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "низька (до -20 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",
@@ -595,6 +622,7 @@ export const cultivars: Cultivar[] = [
     yield: "хороша",
     frostResistance: "низька (до -20 C°)",
     rootstock: "хурма вірджинська",
+    rootSystem: "open",
     cultivation: {
       planting: "Для посадки потрібне сонячне місце, захищене від вітру.",
       care: "Дерево невибагливе, але для кращого врожаю рекомендується мульчування ґрунту під кроною та своєчасна обрізка.",

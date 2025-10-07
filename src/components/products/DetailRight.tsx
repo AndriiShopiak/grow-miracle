@@ -25,6 +25,13 @@ export default function DetailRight({ item }: { item: Cultivar }) {
         <span className="inline-flex items-center rounded-full bg-accent/10 text-accent text-xs font-medium px-3 py-1">
           Дозрівання: {item.ripeningTerm}
         </span>
+        <span className={`inline-flex items-center rounded-full text-xs font-medium px-3 py-1 ${
+          item.rootSystem === 'open' 
+            ? 'bg-green-100 text-green-800' 
+            : 'bg-blue-100 text-blue-800'
+        }`}>
+          {item.rootSystem === 'open' ? 'Відкрита коренева система' : 'Закрита коренева система'}
+        </span>
       </div>
       <p className="text-gray-700 leading-7 mb-6">{item.fruits}</p>
 
@@ -58,6 +65,37 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <li><span className="font-medium">Догляд:</span> {item.cultivation.care}</li>
           <li><span className="font-medium">Період плодоношення:</span> {item.cultivation.bearingPeriod}</li>
         </ul>
+        
+        <div className={`mt-4 p-4 rounded-lg border ${
+          item.rootSystem === 'open' 
+            ? 'bg-green-50 border-green-200' 
+            : 'bg-blue-50 border-blue-200'
+        }`}>
+          <h3 className={`text-md font-semibold mb-2 ${
+            item.rootSystem === 'open' ? 'text-green-800' : 'text-blue-800'
+          }`}>
+            {item.rootSystem === 'open' ? 'Переваги відкритої кореневої системи:' : 'Переваги закритої кореневої системи:'}
+          </h3>
+          <ul className={`list-disc pl-5 space-y-1 text-sm ${
+            item.rootSystem === 'open' ? 'text-green-700' : 'text-blue-700'
+          }`}>
+            {item.rootSystem === 'open' ? (
+              <>
+                <li>Краща приживаність після посадки</li>
+                <li>Швидший розвиток кореневої системи</li>
+                <li>Економія на поливі в перші роки</li>
+                <li>Можливість посадки в оптимальний час (осінь/весна)</li>
+              </>
+            ) : (
+              <>
+                <li>Можливість посадки в будь-який час року</li>
+                <li>Краща транспортабельність</li>
+                <li>Менше стресу для рослини при посадці</li>
+                <li>Швидше приживання в новому місці</li>
+              </>
+            )}
+          </ul>
+        </div>
       </div>
 
       <div className="mt-8 flex gap-3">
