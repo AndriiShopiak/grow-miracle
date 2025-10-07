@@ -7,7 +7,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Header з логотипом та навігацією */}
       <header className="bg-primary shadow-lg">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center bg-white">
@@ -34,20 +34,33 @@ export default function Home() {
       </header>
 
       {/* Hero секція */}
-      <section className="bg-gradient-to-b from-light-green to-primary py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-secondary mb-6">
-            Свіжі овочі та фрукти
-          </h2>
-          <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
-            Натуральні продукти з власного саду для вашої родини. 
-            Без хімії, з турботою.
-          </p>
-          <a 
-            href="#products" 
+      <section className="relative py-20 md:py-28 min-h-[60vh]">
+        {/* Фонове зображення */}
+        <Image
+          src="/products/19.jpg"
+          alt="Саджанці хурми"
+          fill
+          priority
+          className="object-cover z-0"
+          sizes="100vw"
+        />
+        {/* Градієнтна підкладка для контрасту тексту */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-primary/60 z-10" />
+        <div className="relative z-20 container mx-auto px-4 text-center max-w-3xl">
+          <div className="mx-auto bg-black/20 backdrop-blur-sm rounded-2xl px-6 py-8 mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Хурма у вашому саду — просто і смачно
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              Вибрані сорти для українського клімату: солодкі без в&apos;яжучості, ранні та пізні.
+              Допоможемо підібрати саджанець під вашу ділянку та догляд.
+            </p>
+          </div>
+          <a
+            href="#products"
             className="inline-block bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-light-accent transition-colors shadow-lg"
           >
-            Переглянути продукцію
+            Переглянути саджанці
           </a>
         </div>
       </section>
