@@ -21,15 +21,39 @@
   --color-light-accent: var(--light-orange);
   --color-pot: var(--pot-green);
   --color-light-green: var(--light-green);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-description: var(--font-description);
+  --font-handwriting: var(--font-handwriting);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.6;
+}
+
+/* Заголовки — елегантна антиква для преміального вигляду */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Описові тексти — легкий та читабельний шрифт */
+p, .description {
+  font-family: var(--font-description), Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+}
+
+/* Рукописний стиль для особливих елементів */
+.font-handwriting {
+  font-family: var(--font-handwriting), cursive;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transform: rotate(-1deg);
 }
 
 /* Кастомні класи для кольорів */

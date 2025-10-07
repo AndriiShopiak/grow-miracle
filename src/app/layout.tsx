@@ -1,12 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Merriweather, Geist_Mono, Source_Sans_3, Kalam } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import CartLink from "@/components/cart/CartLink";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const manrope = Manrope({
+  variable: "--font-sans",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const merriweather = Merriweather({
+  variable: "--font-serif",
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "700", "900"],
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  variable: "--font-description",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const kalam = Kalam({
+  variable: "--font-handwriting",
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -27,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${manrope.variable} ${merriweather.variable} ${sourceSans.variable} ${kalam.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           {children}
