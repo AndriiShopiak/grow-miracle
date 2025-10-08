@@ -4,8 +4,7 @@ import { useState } from "react";
 
 export type FilterOptions = {
   rootSystem: 'all' | 'open' | 'closed';
-  species: 'all' | 'хурма гібридна' | 'хурма східна';
-  frostResistance: 'all' | 'high' | 'medium' | 'low';
+  category: 'all' | 'хурма' | 'персик' | 'абрикос';
 };
 
 type ProductFilterProps = {
@@ -17,12 +16,11 @@ type ProductFilterProps = {
 export default function ProductFilter({ onFilterChange, totalCount, filteredCount }: ProductFilterProps) {
   const [filters, setFilters] = useState<FilterOptions>({
     rootSystem: 'all',
-    species: 'all',
-    frostResistance: 'all'
+    category: 'all'
   });
 
   const handleFilterChange = (key: keyof FilterOptions, value: string) => {
-    const newFilters = { ...filters, [key]: value as any };
+    const newFilters = { ...filters, [key]: value as FilterOptions[keyof FilterOptions] };
     setFilters(newFilters);
     onFilterChange(newFilters);
   };
@@ -30,14 +28,13 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
   const clearFilters = () => {
     const clearedFilters = {
       rootSystem: 'all' as const,
-      species: 'all' as const,
-      frostResistance: 'all' as const
+      category: 'all' as const
     };
     setFilters(clearedFilters);
     onFilterChange(clearedFilters);
   };
 
-  const hasActiveFilters = filters.rootSystem !== 'all' || filters.species !== 'all' || filters.frostResistance !== 'all';
+  const hasActiveFilters = filters.rootSystem !== 'all' || filters.category !== 'all';
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -48,7 +45,7 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Фільтр по кореневій системі */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -65,38 +62,23 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
           </select>
         </div>
 
-        {/* Фільтр по виду */}
+        {/* Фільтр по категорії */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Вид
+            Категорія
           </label>
           <select
-            value={filters.species}
-            onChange={(e) => handleFilterChange('species', e.target.value)}
+            value={filters.category}
+            onChange={(e) => handleFilterChange('category', e.target.value)}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-accent focus:border-accent"
           >
             <option value="all">Всі</option>
-            <option value="хурма гібридна">Хурма гібридна</option>
-            <option value="хурма східна">Хурма східна</option>
+            <option value="хурма">Хурма</option>
+            <option value="персик">Персики</option>
+            <option value="абрикос">Абрикоси</option>
           </select>
         </div>
 
-        {/* Фільтр по морозостійкості */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Морозостійкість
-          </label>
-          <select
-            value={filters.frostResistance}
-            onChange={(e) => handleFilterChange('frostResistance', e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-accent focus:border-accent"
-          >
-            <option value="all">Всі</option>
-            <option value="high">Висока (до -25°C і нижче)</option>
-            <option value="medium">Середня (-20°C до -25°C)</option>
-            <option value="low">Низька (вище -20°C)</option>
-          </select>
-        </div>
       </div>
 
       {hasActiveFilters && (

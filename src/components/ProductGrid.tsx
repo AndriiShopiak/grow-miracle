@@ -20,8 +20,7 @@ export default function ProductGrid() {
   // Filter state
   const [filters, setFilters] = useState<FilterOptions>({
     rootSystem: 'all',
-    species: 'all',
-    frostResistance: 'all'
+    category: 'all'
   });
 
   useEffect(() => {
@@ -59,22 +58,19 @@ export default function ProductGrid() {
         return false;
       }
       
-      // Filter by species
-      if (filters.species !== 'all' && item.species !== filters.species) {
-        return false;
+      // Filter by category
+      if (filters.category !== 'all') {
+        if (filters.category === 'хурма' && !item.species.includes('хурма')) {
+          return false;
+        }
+        if (filters.category === 'персик' && item.species !== 'персик') {
+          return false;
+        }
+        if (filters.category === 'абрикос' && item.species !== 'абрикос') {
+          return false;
+        }
       }
       
-      // Filter by frost resistance
-      if (filters.frostResistance !== 'all') {
-        const frostText = item.frostResistance.toLowerCase();
-        const hasHigh = frostText.includes('до -25') || frostText.includes('до -26') || frostText.includes('до -27') || frostText.includes('до -28') || frostText.includes('до -29');
-        const hasMedium = frostText.includes('до -20') || frostText.includes('до -21') || frostText.includes('до -22') || frostText.includes('до -23') || frostText.includes('до -24');
-        const hasLow = frostText.includes('до -16') || frostText.includes('до -17') || frostText.includes('до -18') || frostText.includes('до -19');
-        
-        if (filters.frostResistance === 'high' && !hasHigh) return false;
-        if (filters.frostResistance === 'medium' && !hasMedium) return false;
-        if (filters.frostResistance === 'low' && !hasLow) return false;
-      }
       
       return true;
     });
