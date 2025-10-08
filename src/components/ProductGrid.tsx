@@ -7,6 +7,7 @@ import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
 import Pagination from "./Pagination";
 import ProductFilter, { FilterOptions } from "./ProductFilter";
+import { filterProducts, getProductPrice } from "@/utils/productUtils";
 
 export default function ProductGrid() {
   const { add, items } = useCart();
@@ -50,30 +51,9 @@ export default function ProductGrid() {
     }, 1800);
   };
 
-  // Filter products based on current filters
+  // Filter products based on current filters using the utility function
   const filteredProducts = useMemo(() => {
-    return cultivars.filter(item => {
-      // Filter by root system
-      if (filters.rootSystem !== 'all' && item.rootSystem !== filters.rootSystem) {
-        return false;
-      }
-      
-      // Filter by category
-      if (filters.category !== 'all') {
-        if (filters.category === 'хурма' && !item.species.includes('хурма')) {
-          return false;
-        }
-        if (filters.category === 'персик' && item.species !== 'персик') {
-          return false;
-        }
-        if (filters.category === 'абрикос' && item.species !== 'абрикос') {
-          return false;
-        }
-      }
-      
-      
-      return true;
-    });
+    return filterProducts(cultivars, filters);
   }, [filters]);
 
   // Calculate pagination
@@ -102,6 +82,7 @@ export default function ProductGrid() {
         onFilterChange={handleFilterChange}
         totalCount={cultivars.length}
         filteredCount={filteredProducts.length}
+        products={cultivars}
       />
       
       {/* Products info */}
@@ -168,7 +149,7 @@ export default function ProductGrid() {
                 ) : (
                   <button
                     onClick={() => {
-                      const price = item.price ? parseInt(item.price.replace(/\D/g, '')) : 800;
+                      const price = getProductPrice(item);
                       add({ id: item.id, title: item.title, image: item.image, price });
                       markJustAdded(item.id);
                     }}

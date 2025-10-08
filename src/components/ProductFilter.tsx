@@ -1,40 +1,46 @@
 "use client";
 
 import { useState } from "react";
+import { getAllFilterOptions } from "@/utils/productUtils";
+import { Cultivar } from "@/data/products";
 
 export type FilterOptions = {
-  rootSystem: 'all' | 'open' | 'closed';
-  category: 'all' | 'хурма' | 'персик' | 'абрикос';
+  rootSystem: string;
+  category: string;
 };
 
 type ProductFilterProps = {
   onFilterChange: (filters: FilterOptions) => void;
   totalCount: number;
   filteredCount: number;
+  products: Cultivar[];
 };
 
-export default function ProductFilter({ onFilterChange, totalCount, filteredCount }: ProductFilterProps) {
+export default function ProductFilter({ onFilterChange, totalCount, filteredCount, products }: ProductFilterProps) {
   const [filters, setFilters] = useState<FilterOptions>({
     rootSystem: 'all',
     category: 'all'
   });
 
+  // Отримуємо всі можливі опції фільтрів динамічно
+  const filterOptions = getAllFilterOptions(products);
+
   const handleFilterChange = (key: keyof FilterOptions, value: string) => {
-    const newFilters = { ...filters, [key]: value as FilterOptions[keyof FilterOptions] };
+    const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     onFilterChange(newFilters);
   };
 
   const clearFilters = () => {
     const clearedFilters = {
-      rootSystem: 'all' as const,
-      category: 'all' as const
+      rootSystem: 'all',
+      category: 'all'
     };
     setFilters(clearedFilters);
     onFilterChange(clearedFilters);
   };
 
-  const hasActiveFilters = filters.rootSystem !== 'all' || filters.category !== 'all';
+  const hasActiveFilters = Object.values(filters).some(value => value !== 'all');
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -46,22 +52,6 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Фільтр по кореневій системі */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Коренева система
-          </label>
-          <select
-            value={filters.rootSystem}
-            onChange={(e) => handleFilterChange('rootSystem', e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-accent focus:border-accent"
-          >
-            <option value="all">Всі</option>
-            <option value="open">Відкрита</option>
-            <option value="closed">Закрита</option>
-          </select>
-        </div>
-
         {/* Фільтр по категорії */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -73,9 +63,30 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-accent focus:border-accent"
           >
             <option value="all">Всі</option>
-            <option value="хурма">Хурма</option>
-            <option value="персик">Персики</option>
-            <option value="абрикос">Абрикоси</option>
+            {filterOptions.categories.map(category => (
+              <option key={category} value={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Фільтр по кореневій системі */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Коренева система
+          </label>
+          <select
+            value={filters.rootSystem}
+            onChange={(e) => handleFilterChange('rootSystem', e.target.value)}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-accent focus:border-accent"
+          >
+            <option value="all">Всі</option>
+            {filterOptions.rootSystems.map(system => (
+              <option key={system} value={system}>
+                {system === 'open' ? 'Відкрита' : 'Закрита'}
+              </option>
+            ))}
           </select>
         </div>
 

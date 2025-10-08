@@ -1,6 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
+import { getProductPrice } from "@/utils/productUtils";
+import { cultivars } from "@/data/products";
 
 export type CartItem = {
   id: number;
@@ -77,10 +79,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (raw) {
         const savedState = JSON.parse(raw) as CartState;
         if (savedState.items.length > 0) {
-          // Restore saved state
+          // Restore saved state with dynamic pricing
           savedState.items.forEach(item => {
-            // Use saved price or default based on item type (we'll need to determine this from the item data)
-            const price = item.price || 800; // Default to 800 for backward compatibility
+            // Find the product in our database to get the current price
+            const product = cultivars.find(p => p.id === item.id);
+            const price = product ? getProductPrice(product) : (item.price || 800);
             dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image, price }, qty: item.qty });
           });
         }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
 import { useMemo } from "react";
 import type { Cultivar } from "@/data/products";
+import { getProductPrice } from "@/utils/productUtils";
 
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
@@ -14,7 +15,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
       <div className="mb-4">
         <div className="inline-flex items-center gap-2 rounded-xl bg-light-green/60 px-4 py-2 ring-2 ring-accent">
           <span className="text-3xl font-extrabold text-secondary">
-            {item.price || "800 грн/шт"}
+            {getProductPrice(item)} грн/шт
           </span>
           <span className="text-[11px] font-medium uppercase tracking-wide text-accent bg-white/70 rounded px-2 py-0.5">за одиницю</span>
         </div>
@@ -113,7 +114,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
         ) : (
           <button
             onClick={() => {
-              const price = item.price ? parseInt(item.price.replace(/\D/g, '')) : 800;
+              const price = getProductPrice(item);
               add({ id: item.id, title: item.title, image: item.image, price });
             }}
             className="rounded-lg border border-primary px-5 py-2 text-primary hover:bg-light-green/40 transition-colors"
