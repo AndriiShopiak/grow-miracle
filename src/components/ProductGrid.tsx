@@ -136,9 +136,6 @@ export default function ProductGrid() {
               <span className="inline-flex items-center rounded-full bg-light-green/60 text-secondary text-xs font-medium px-2.5 py-1">
                 {item.species}
               </span>
-              <span className="inline-flex items-center rounded-full bg-accent/10 text-accent text-xs font-medium px-2.5 py-1">
-                Дозрівання: {item.ripeningTerm}
-              </span>
               <span className={`inline-flex items-center rounded-full text-xs font-medium px-2.5 py-1 ${
                 item.rootSystem === 'open' 
                   ? 'bg-green-100 text-green-800' 
@@ -153,8 +150,7 @@ export default function ProductGrid() {
             >
               {item.fruits}
             </p>
-            <div className="mt-5 flex items-center justify-between">
-              <span className="text-xs text-gray-500">Морозостійкість: {item.frostResistance}</span>
+            <div className="mt-5">
               <div className="flex gap-2">
                 <Link
                   href={`/products/${item.id}`}
