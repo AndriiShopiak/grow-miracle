@@ -6,6 +6,7 @@ export type CartItem = {
   id: number;
   title: string;
   image: string;
+  price: number;
   qty: number;
 };
 
@@ -78,7 +79,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         if (savedState.items.length > 0) {
           // Restore saved state
           savedState.items.forEach(item => {
-            dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image }, qty: item.qty });
+            // Use saved price or default based on item type (we'll need to determine this from the item data)
+            const price = item.price || 800; // Default to 800 for backward compatibility
+            dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image, price }, qty: item.qty });
           });
         }
       }

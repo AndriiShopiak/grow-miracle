@@ -3,13 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
-import { UNIFIED_PRICE, UNIFIED_PRICE_VALUE } from "@/data/products";
 import OrderForm from "@/components/OrderForm";
 
 export default function CartPage() {
   const { items, inc, dec, remove, clear, totalItems } = useCart();
   const formatCurrency = (value: number) => `${value.toLocaleString("uk-UA")} грн`;
-  const totalAmount = items.reduce((sum, item) => sum + item.qty * UNIFIED_PRICE_VALUE, 0);
+  const totalAmount = items.reduce((sum, item) => sum + item.qty * item.price, 0);
   const isEmpty = items.length === 0;
 
   return (
@@ -32,7 +31,7 @@ export default function CartPage() {
                 </div>
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold text-secondary">{item.title}</h2>
-                  <div className="mt-1 text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{UNIFIED_PRICE}</span></div>
+                  <div className="mt-1 text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{formatCurrency(item.price)}</span></div>
                   <div className="mt-2 inline-flex items-center rounded-md border border-gray-300">
                     <button onClick={() => dec(item.id)} className="px-3 py-1 hover:bg-gray-100">-</button>
                     <span className="px-4">{item.qty}</span>
@@ -41,7 +40,7 @@ export default function CartPage() {
                 </div>
                 <div className="text-right">
                   <div className="text-sm text-gray-500">Сума</div>
-                  <div className="text-base font-semibold text-secondary">{formatCurrency(item.qty * UNIFIED_PRICE_VALUE)}</div>
+                  <div className="text-base font-semibold text-secondary">{formatCurrency(item.qty * item.price)}</div>
                 </div>
                 <button onClick={() => remove(item.id)} className="text-sm text-red-600 hover:underline">Видалити</button>
               </div>

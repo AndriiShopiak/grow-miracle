@@ -176,7 +176,8 @@ export default function ProductGrid() {
                 ) : (
                   <button
                     onClick={() => {
-                      add({ id: item.id, title: item.title, image: item.image });
+                      const price = item.price ? parseInt(item.price.replace(/\D/g, '')) : 800;
+                      add({ id: item.id, title: item.title, image: item.image, price });
                       markJustAdded(item.id);
                     }}
                     className="inline-flex items-center rounded-lg border border-primary px-4 py-2 text-primary text-sm font-medium transition-colors hover:bg-light-green/40"
