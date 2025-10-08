@@ -58,6 +58,10 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <dt className="font-medium">Підщепа</dt>
           <dd>{item.rootstock}</dd>
         </div>
+        <div>
+          <dt className="font-medium">Висота саджанця</dt>
+          <dd>{item.height}</dd>
+        </div>
       </dl>
 
       <div className="mt-8 border-t border-gray-200 pt-5">
