@@ -1,9 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Gallery from "@/components/Gallery";
 import ProductGrid from "@/components/ProductGrid";
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header з логотипом та навігацією */}
@@ -25,12 +41,70 @@ export default function Home() {
                 <p className="text-white text-sm">Тут росте диво</p>
               </div>
             </div>
+            
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
-              <a href="#products" className="text-white hover:text-light-green transition-colors">Продукція</a>
-              <a href="#about" className="text-white hover:text-light-green transition-colors">Про нас</a>
-              <a href="#contact" className="text-white hover:text-light-green transition-colors">Контакти</a>
+              <button 
+                onClick={() => scrollToSection('products')} 
+                className="text-white hover:text-light-green transition-colors"
+              >
+                Продукція
+              </button>
+              <button 
+                onClick={() => scrollToSection('about')} 
+                className="text-white hover:text-light-green transition-colors"
+              >
+                Про нас
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')} 
+                className="text-white hover:text-light-green transition-colors"
+              >
+                Контакти
+              </button>
             </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 border-t border-white/20">
+              <div className="flex flex-col space-y-4 pt-4">
+                <button 
+                  onClick={() => scrollToSection('products')} 
+                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                >
+                  Продукція
+                </button>
+                <button 
+                  onClick={() => scrollToSection('about')} 
+                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                >
+                  Про нас
+                </button>
+                <button 
+                  onClick={() => scrollToSection('contact')} 
+                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                >
+                  Контакти
+                </button>
+              </div>
+            </nav>
+          )}
         </div>
       </header>
 
@@ -58,12 +132,12 @@ export default function Home() {
               Допоможемо підібрати саджанець під вашу ділянку та догляд.
             </p>
           </div>
-          <a
-            href="#products"
+          <button
+            onClick={() => scrollToSection('products')}
             className="inline-block bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-light-accent transition-colors shadow-lg"
           >
             Переглянути саджанці
-          </a>
+          </button>
         </div>
       </section>
 
