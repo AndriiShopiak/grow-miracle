@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
-import { UNIFIED_PRICE, UNIFIED_PRICE_VALUE } from '@/data/products';
+import { cultivars } from '@/data/products';
+import { getProductPrice } from '@/utils/productUtils';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -39,8 +40,20 @@ export async function POST(request: NextRequest) {
     let totalItems = 0;
     let totalAmount = 0;
     items.forEach((item: any, index: number) => {
-      const itemSum = item.qty * UNIFIED_PRICE_VALUE;
-      message += `${index + 1}. ${item.title} — ${item.qty} шт. × ${UNIFIED_PRICE} = ${itemSum.toLocaleString('uk-UA')} грн\n`;
+      // Знаходимо продукт в базі даних для отримання актуальної ціни та деталей
+      const product = cultivars.find(p => p.id === item.id);
+      const itemPrice = product ? getProductPrice(product) : item.price || 800;
+      const priceText = product?.price || `${itemPrice} грн/шт`;
+      const itemSum = item.qty * itemPrice;
+      
+      message += `${index + 1}. ${item.title}`;
+      if (product) {
+        message += ` (${product.species})`;
+        if (product.rootSystem) {
+          message += ` [${product.rootSystem === 'open' ? 'ВКС' : 'ЗКС'}]`;
+        }
+      }
+      message += ` — ${item.qty} шт. × ${priceText} = ${itemSum.toLocaleString('uk-UA')} грн\n`;
       totalItems += item.qty;
       totalAmount += itemSum;
     });
