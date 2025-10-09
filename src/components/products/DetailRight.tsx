@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
-import { useMemo } from "react";
+import { useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Cultivar } from "@/data/products";
 import { getProductPrice } from "@/utils/productUtils";
 
-export default function DetailRight({ item }: { item: Cultivar }) {
-  const { add, items } = useCart();
+function BackButton() {
   const searchParams = useSearchParams();
-  const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
   
   // Build back URL with current filters and pagination
   const buildBackUrl = () => {
@@ -33,6 +31,20 @@ export default function DetailRight({ item }: { item: Cultivar }) {
     const queryString = params.toString();
     return queryString ? `/?${queryString}#products` : '/#products';
   };
+
+  return (
+    <Link 
+      href={buildBackUrl()}
+      className="flex-1 rounded-lg bg-primary px-6 py-3 text-white hover:bg-secondary transition-all duration-200 text-center font-medium shadow-sm hover:shadow-md text-lg"
+    >
+      Назад до продуктів
+    </Link>
+  );
+}
+
+export default function DetailRight({ item }: { item: Cultivar }) {
+  const { add, items } = useCart();
+  const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
   return (
     <div className="space-y-6">
       {/* Заголовок та ціна */}
@@ -135,12 +147,13 @@ export default function DetailRight({ item }: { item: Cultivar }) {
       {/* Кнопки дій */}
       <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-5 border border-gray-200/50">
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link 
-            href={buildBackUrl()}
-            className="flex-1 rounded-lg bg-primary px-6 py-3 text-white hover:bg-secondary transition-all duration-200 text-center font-medium shadow-sm hover:shadow-md text-lg"
-          >
-            Назад до продуктів
-          </Link>
+          <Suspense fallback={
+            <div className="flex-1 rounded-lg bg-gray-300 px-6 py-3 text-center font-medium text-lg animate-pulse">
+              Завантаження...
+            </div>
+          }>
+            <BackButton />
+          </Suspense>
           {isInCart ? (
             <button
               disabled

@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     
     let totalItems = 0;
     let totalAmount = 0;
-    items.forEach((item: any, index: number) => {
+    items.forEach((item: { id: number; title: string; qty: number; price?: number }, index: number) => {
       // Знаходимо продукт в базі даних для отримання актуальної ціни та деталей
       const product = cultivars.find(p => p.id === item.id);
       const itemPrice = product ? getProductPrice(product) : item.price || 800;

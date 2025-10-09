@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
@@ -10,7 +10,7 @@ import Pagination from "./Pagination";
 import ProductFilter, { FilterOptions } from "./ProductFilter";
 import { filterProducts, getProductPrice } from "@/utils/productUtils";
 
-export default function ProductGrid() {
+function ProductGridWithSearchParams() {
   const { add, items } = useCart();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -206,6 +206,19 @@ export default function ProductGrid() {
         onPageChange={handlePageChange}
       />
     </div>
+  );
+}
+
+export default function ProductGrid() {
+  return (
+    <Suspense fallback={
+      <div className="text-center py-8">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <p className="mt-2 text-gray-600">Завантаження продуктів...</p>
+      </div>
+    }>
+      <ProductGridWithSearchParams />
+    </Suspense>
   );
 }
 

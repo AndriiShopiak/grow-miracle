@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
 
 interface CustomerInfo {
@@ -72,9 +73,9 @@ export default function OrderForm({ onOrderSent }: OrderFormProps) {
     return (
       <div className="bg-white rounded-xl p-8 text-center shadow">
         <p className="text-gray-700 mb-4">Ваш кошик порожній</p>
-        <a href="/" className="inline-block rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">
+        <Link href="/" className="inline-block rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">
           До каталогу
-        </a>
+        </Link>
       </div>
     );
   }
@@ -85,11 +86,11 @@ export default function OrderForm({ onOrderSent }: OrderFormProps) {
         <div className="text-green-600 text-6xl mb-4">✅</div>
         <h3 className="text-2xl font-bold text-secondary mb-4">Замовлення відправлено!</h3>
         <p className="text-gray-700 mb-6">
-          Дякуємо за замовлення! Ми зв'яжемося з вами найближчим часом.
+          Дякуємо за замовлення! Ми зв&apos;яжемося з вами найближчим часом.
         </p>
-        <a href="/" className="inline-block rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">
+        <Link href="/" className="inline-block rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">
           Продовжити покупки
-        </a>
+        </Link>
       </div>
     );
   }
@@ -101,7 +102,7 @@ export default function OrderForm({ onOrderSent }: OrderFormProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Ім'я *
+            Ім&apos;я *
           </label>
           <input
             type="text"
@@ -110,7 +111,7 @@ export default function OrderForm({ onOrderSent }: OrderFormProps) {
             value={customerInfo.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="Ваше ім'я"
+            placeholder="Ваше ім&apos;я"
           />
         </div>
 
@@ -173,7 +174,7 @@ export default function OrderForm({ onOrderSent }: OrderFormProps) {
 
         {submitStatus === "error" && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
-            Помилка при відправці замовлення. Спробуйте ще раз або зв'яжіться з нами по телефону.
+            Помилка при відправці замовлення. Спробуйте ще раз або зв&apos;яжіться з нами по телефону.
           </div>
         )}
 
