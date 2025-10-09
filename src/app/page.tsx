@@ -132,12 +132,20 @@ export default function Home() {
               Допоможемо підібрати саджанець під вашу ділянку та догляд.
             </p>
           </div>
-          <button
-            onClick={() => scrollToSection('products')}
-            className="inline-block bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-light-accent transition-colors shadow-lg"
-          >
-            Переглянути саджанці
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => scrollToSection('products')}
+              className="inline-block bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-light-accent transition-colors shadow-lg"
+            >
+              Переглянути саджанці
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-colors shadow-lg"
+            >
+              Зв&apos;язатися з нами
+            </button>
+          </div>
         </div>
       </section>
 
@@ -151,23 +159,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Галерея прев’ю */}
+      {/* Галерея прев'ю */}
       <section className="py-16 bg-white/60">
         <div className="container mx-auto px-4">
-          <div className="mb-6">
-            <h3 className="text-3xl font-bold text-center text-secondary">Світлини</h3>
+          <div className="mb-8 text-center">
+            <h3 className="text-3xl font-bold text-secondary mb-4">Світлини нашого саду</h3>
           </div>
           <Gallery
             images={Array.from({ length:6 }, (_, i) => ({ src: `/gallery/${i + 1}.jpg`, alt: `Сад, фото ${i + 1}` }))}
             columns={3}
             enableLightbox={false}
           />
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/gallery"
-              className="inline-block bg-accent text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-light-accent focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-white transition"
+              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-light-accent focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-white transition-all duration-300 hover:scale-105"
             >
-              Більше фото
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Переглянути всі фото
             </Link>
           </div>
         </div>
@@ -211,38 +222,63 @@ export default function Home() {
       </section>
 
       {/* Контакти */}
-      <section id="contact" className="py-16">
+      <section id="contact" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center text-secondary mb-12">Контакти</h3>
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="grid grid-cols-1 gap-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Телефон з месенджерами */}
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h4 className="text-xl font-semibold text-secondary mb-4">Телефон</h4>
-                <p className="text-lg text-accent mb-4">+380 68 524 93 82</p>
-                <div className="flex justify-center space-x-4">
-                  <a 
-                    href="tel:+380685249382" 
-                    className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors"
-                    title="Подзвонити"
-                  >
-                    <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
-                  </a>
-                  <a 
-                    href="viber://chat?number=+380685249382" 
-                    className="bg-purple-500 text-white p-3 rounded-full hover:bg-purple-600 transition-colors"
-                    title="Написати в Viber"
-                  >
-                    <Image
-                      src="/icons/viber.png"
-                      alt="Viber"
-                      width={30}
-                      height={30}
-                      className="w-7 h-7"
-                    />
-                  </a>
+                  </div>
+                  <h4 className="text-xl font-semibold text-secondary mb-4">Телефон</h4>
+                  <p className="text-2xl font-bold text-accent mb-6">+380 68 524 93 82</p>
+                  <div className="flex justify-center space-x-4">
+                    <a 
+                      href="tel:+380685249382" 
+                      className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors hover:scale-110"
+                      title="Подзвонити"
+                    >
+                      <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                      </svg>
+                    </a>
+                    <a 
+                      href="viber://chat?number=+380685249382" 
+                      className="bg-purple-500 text-white p-3 rounded-full hover:bg-purple-600 transition-colors hover:scale-110"
+                      title="Написати в Viber"
+                    >
+                      <Image
+                        src="/icons/viber.png"
+                        alt="Viber"
+                        width={30}
+                        height={30}
+                        className="w-7 h-7"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Адреса */}
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-semibold text-secondary mb-4">Наша адреса</h4>
+                  <p className="text-lg text-secondary leading-relaxed">
+                    Україна, Закарпатська область<br />
+                    Екологічно чистий район<br />
+                    <span className="text-accent font-medium">Доставка по всій Україні</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -251,9 +287,69 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-secondary text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()} Сад Олега - Тут росте диво. Всі права захищені.</p>
+      <footer className="bg-secondary text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Про компанію */}
+            <div>
+              <h4 className="text-xl font-bold mb-4">Сад Олега</h4>
+              <p className="text-white/80 leading-relaxed">
+                Вирощуємо саджанці хурми з 2015 року. Екологічно чисті рослини з відкритою кореневою системою.
+              </p>
+            </div>
+
+            {/* Швидкі посилання */}
+            <div>
+              <h4 className="text-xl font-bold mb-4">Навігація</h4>
+              <ul className="space-y-2">
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('products')}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    Продукція
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('about')}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    Про нас
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToSection('contact')}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    Контакти
+                  </button>
+                </li>
+                <li>
+                  <Link href="/gallery" className="text-white/80 hover:text-white transition-colors">
+                    Галерея
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Контактна інформація */}
+            <div>
+              <h4 className="text-xl font-bold mb-4">Контакти</h4>
+              <div className="space-y-2 text-white/80">
+                <p>📞 +380 68 524 93 82</p>
+                <p>📍 Закарпатська область</p>
+                <p>🌱 Доставка по Україні</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/20 pt-8 text-center">
+            <p className="text-white/80">
+              &copy; {new Date().getFullYear()} Сад Олега - Тут росте диво. Всі права захищені.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
