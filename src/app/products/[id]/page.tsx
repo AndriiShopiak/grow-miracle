@@ -2,17 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { cultivars } from "@/data/products";
 import DetailRight from "@/components/products/DetailRight";
+import SeedlingPhotos from "@/components/SeedlingPhotos";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export function generateStaticParams() {
   return cultivars.map((c) => ({ id: String(c.id) }));
 }
 
-export default function ProductDetail({ params }: Props) {
-  const id = Number(params.id);
+export default async function ProductDetail({ params }: Props) {
+  const { id: idParam } = await params;
+  const id = Number(idParam);
   const item = cultivars.find((c) => c.id === id);
 
   if (!item) {
@@ -28,8 +30,14 @@ export default function ProductDetail({ params }: Props) {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="relative w-full h-80 md:h-[28rem] rounded-xl overflow-hidden shadow">
-            <Image src={item.image} alt={item.title} fill className="object-cover" />
+          <div className="space-y-6">
+            {/* Основне фото товару */}
+            <div className="relative w-full h-80 md:h-[28rem] rounded-xl overflow-hidden shadow">
+              <Image src={item.image} alt={item.title} fill className="object-cover" />
+            </div>
+            
+            {/* Галерея саджанців */}
+            <SeedlingPhotos product={item} />
           </div>
           <DetailRight item={item} />
         </div>

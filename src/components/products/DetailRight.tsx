@@ -5,7 +5,6 @@ import { useCart } from "@/components/cart/CartContext";
 import { useMemo } from "react";
 import type { Cultivar } from "@/data/products";
 import { getProductPrice } from "@/utils/productUtils";
-import SeedlingPhotos from "@/components/SeedlingPhotos";
 
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
@@ -104,9 +103,6 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           </ul>
         </div>
       </div>
-
-      {/* Компонент для показу фото саджанців */}
-      <SeedlingPhotos product={item} />
 
       <div className="mt-8 flex gap-3">
         <Link href="/" className="rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">

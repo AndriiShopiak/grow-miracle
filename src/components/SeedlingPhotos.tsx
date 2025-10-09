@@ -69,7 +69,7 @@ export default function SeedlingPhotos({ product }: SeedlingPhotosProps) {
             src={images[selectedImage].src}
             alt={images[selectedImage].alt}
             fill
-            className="object-contain"
+            className="object-cover md:object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
@@ -81,7 +81,7 @@ export default function SeedlingPhotos({ product }: SeedlingPhotosProps) {
               <button
                 key={index}
                 onClick={() => setSelectedImage(index)}
-                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden flex-shrink-0 transition-all ${
+                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-lg m-1 overflow-hidden flex-shrink-0 transition-all ${
                   selectedImage === index
                     ? 'ring-2 ring-primary ring-offset-2'
                     : 'opacity-70 hover:opacity-100'
