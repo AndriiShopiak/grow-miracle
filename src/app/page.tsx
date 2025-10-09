@@ -102,20 +102,36 @@ export default function Home() {
       {/* Секція про нас */}
       <section id="about" className="bg-light-green py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-3xl font-bold text-secondary mb-8">Про наш сад</h3>
-            <p className="text-lg text-secondary mb-6">
-              Ми вирощуємо саджанці хурми з 2015 року. Наш сад розташований у екологічно чистому районі, 
-              де ми використовуємо тільки природні методи вирощування без хімічних добрив та пестицидів.
-            </p>
-            <p className="text-lg text-secondary mb-6">
-              Всі наші саджанці мають відкриту кореневу систему, що забезпечує кращу приживаність 
-              та швидший розвиток рослин після посадки. Це перевага перед саджанцями в контейнерах.
-            </p>
-            <p className="text-lg text-secondary">
-              Кожен саджанець вирощується з турботою, щоб забезпечити вашу родину найкращими 
-              та найздоровішими рослинами для вашого саду.
-            </p>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h3 className="text-3xl font-bold text-secondary mb-6">Про наш сад</h3>
+                <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
+                  Ми вирощуємо саджанці хурми з 2015 року. Наш сад розташований у екологічно чистому районі,
+                  де ми використовуємо тільки природні методи вирощування без хімічних добрив та пестицидів.
+                </p>
+                <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
+                  Всі наші саджанці мають відкриту кореневу систему, що забезпечує кращу приживаність
+                  та швидший розвиток рослин після посадки. Це перевага перед саджанцями в контейнерах.
+                </p>
+                <p className="text-lg md:text-xl text-secondary leading-relaxed">
+                  Кожен саджанець вирощується з турботою, щоб забезпечити вашу родину найкращими
+                  та найздоровішими рослинами для вашого саду.
+                </p>
+              </div>
+            </div>
+            <div className="w-full">
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
+                <Image
+                  src="/gallery/15.jpg"
+                  alt="Наш сад — галерея"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
