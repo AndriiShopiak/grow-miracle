@@ -14,10 +14,11 @@ type ProductFilterProps = {
   totalCount: number;
   filteredCount: number;
   products: Cultivar[];
+  initialFilters?: FilterOptions;
 };
 
-export default function ProductFilter({ onFilterChange, totalCount, filteredCount, products }: ProductFilterProps) {
-  const [filters, setFilters] = useState<FilterOptions>({
+export default function ProductFilter({ onFilterChange, totalCount, filteredCount, products, initialFilters }: ProductFilterProps) {
+  const [filters, setFilters] = useState<FilterOptions>(initialFilters || {
     rootSystem: 'all',
     category: 'all'
   });

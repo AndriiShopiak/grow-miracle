@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
 import Pagination from "./Pagination";
@@ -11,18 +12,48 @@ import { filterProducts, getProductPrice } from "@/utils/productUtils";
 
 export default function ProductGrid() {
   const { add, items } = useCart();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const itemIdsInCart = useMemo(() => new Set(items.map((i) => i.id)), [items]);
   const [justAddedIds, setJustAddedIds] = useState<Set<number>>(new Set());
   
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9; // 3x3 grid
   
-  // Filter state
-  const [filters, setFilters] = useState<FilterOptions>({
-    rootSystem: 'all',
-    category: 'all'
+  // Get initial state from URL params
+  const getInitialFilters = (): FilterOptions => ({
+    rootSystem: searchParams.get('rootSystem') || 'all',
+    category: searchParams.get('category') || 'all'
   });
+  
+  const getInitialPage = (): number => {
+    const page = searchParams.get('page');
+    return page ? Math.max(1, parseInt(page, 10)) : 1;
+  };
+  
+  // Filter state
+  const [filters, setFilters] = useState<FilterOptions>(getInitialFilters);
+  const [currentPage, setCurrentPage] = useState(getInitialPage);
+
+  // Function to update URL parameters
+  const updateURL = (newFilters: FilterOptions, newPage: number) => {
+    const params = new URLSearchParams();
+    
+    if (newFilters.rootSystem !== 'all') {
+      params.set('rootSystem', newFilters.rootSystem);
+    }
+    if (newFilters.category !== 'all') {
+      params.set('category', newFilters.category);
+    }
+    if (newPage > 1) {
+      params.set('page', newPage.toString());
+    }
+    
+    const queryString = params.toString();
+    const newURL = queryString ? `/?${queryString}` : '/';
+    
+    // Update URL without causing a page reload
+    router.replace(newURL, { scroll: false });
+  };
 
   useEffect(() => {
     // If an item is in the cart, remove it from justAdded after hydrate inconsistencies
@@ -64,6 +95,7 @@ export default function ProductGrid() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    updateURL(filters, page);
     // Scroll to top of products section
     const productsSection = document.getElementById('products');
     if (productsSection) {
@@ -74,6 +106,7 @@ export default function ProductGrid() {
   const handleFilterChange = (newFilters: FilterOptions) => {
     setFilters(newFilters);
     setCurrentPage(1); // Reset to first page when filters change
+    updateURL(newFilters, 1);
   };
   return (
     <div>
@@ -83,6 +116,7 @@ export default function ProductGrid() {
         totalCount={cultivars.length}
         filteredCount={filteredProducts.length}
         products={cultivars}
+        initialFilters={filters}
       />
       
       {/* Products info */}
@@ -134,7 +168,7 @@ export default function ProductGrid() {
             <div className="mt-5">
               <div className="flex gap-2">
                 <Link
-                  href={`/products/${item.id}`}
+                  href={`/products/${item.id}?${searchParams.toString()}`}
                   className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium transition-colors hover:bg-secondary"
                 >
                   Деталі

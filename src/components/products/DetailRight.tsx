@@ -3,12 +3,36 @@
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
 import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import type { Cultivar } from "@/data/products";
 import { getProductPrice } from "@/utils/productUtils";
 
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
+  const searchParams = useSearchParams();
   const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
+  
+  // Build back URL with current filters and pagination
+  const buildBackUrl = () => {
+    const params = new URLSearchParams();
+    
+    const rootSystem = searchParams.get('rootSystem');
+    const category = searchParams.get('category');
+    const page = searchParams.get('page');
+    
+    if (rootSystem && rootSystem !== 'all') {
+      params.set('rootSystem', rootSystem);
+    }
+    if (category && category !== 'all') {
+      params.set('category', category);
+    }
+    if (page && page !== '1') {
+      params.set('page', page);
+    }
+    
+    const queryString = params.toString();
+    return queryString ? `/?${queryString}#products` : '/#products';
+  };
   return (
     <div className="space-y-6">
       {/* Заголовок та ціна */}
@@ -112,10 +136,10 @@ export default function DetailRight({ item }: { item: Cultivar }) {
       <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-5 border border-gray-200/50">
         <div className="flex flex-col sm:flex-row gap-3">
           <Link 
-            href="/" 
+            href={buildBackUrl()}
             className="flex-1 rounded-lg bg-primary px-6 py-3 text-white hover:bg-secondary transition-all duration-200 text-center font-medium shadow-sm hover:shadow-md text-lg"
           >
-            На головну
+            Назад до продуктів
           </Link>
           {isInCart ? (
             <button
