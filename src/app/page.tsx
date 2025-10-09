@@ -124,15 +124,36 @@ export default function Home() {
       <section id="contact" className="py-16">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center text-secondary mb-12">Контакти</h3>
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="grid grid-cols-1 gap-8">
+              {/* Телефон з месенджерами */}
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <h4 className="text-xl font-semibold text-secondary mb-4">Телефон</h4>
-                <p className="text-lg text-accent">+380 50 123 45 67</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h4 className="text-xl font-semibold text-secondary mb-4">Email</h4>
-                <p className="text-lg text-accent">oleg.garden@gmail.com</p>
+                <p className="text-lg text-accent mb-4">+380 68 524 93 82</p>
+                <div className="flex justify-center space-x-4">
+                  <a 
+                    href="tel:+380685249382" 
+                    className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors"
+                    title="Подзвонити"
+                  >
+                    <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                  </a>
+                  <a 
+                    href="viber://chat?number=+380685249382" 
+                    className="bg-purple-500 text-white p-3 rounded-full hover:bg-purple-600 transition-colors"
+                    title="Написати в Viber"
+                  >
+                    <Image
+                      src="/icons/viber.png"
+                      alt="Viber"
+                      width={30}
+                      height={30}
+                      className="w-7 h-7"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -142,7 +163,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-secondary text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Сад Олега - Тут росте диво. Всі права захищені.</p>
+          <p>&copy; {new Date().getFullYear()} Сад Олега - Тут росте диво. Всі права захищені.</p>
         </div>
       </footer>
     </div>
