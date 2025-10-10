@@ -130,13 +130,10 @@ export default function Home() {
           {/* Контейнер з покращеним дизайном без hover-ефектів */}
           <div className="mx-auto bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-md rounded-3xl px-8 py-12 mb-10 border border-white/20 shadow-2xl">
             {/* Декоративна лінія зверху */}
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 rounded-full"></div>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
               Сад Олега — тут росте диво
             </h2>
-            
-            <div className="w-32 h-1 bg-gradient-to-r from-accent via-white to-accent mx-auto mb-8 rounded-full"></div>
             
             <div className="max-w-3xl mx-auto">
               <p className="text-xl md:text-2xl text-white/95 mb-6 leading-relaxed font-light">
@@ -162,12 +159,11 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center overflow-hidden px-4 py-2">
             <button
               onClick={() => scrollToSection('products')}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-accent to-light-accent text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:from-light-accent hover:to-accent transition-all duration-300 hover:scale-105 transform"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-green-600 to-green-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:from-green-500 hover:to-green-400 transition-all duration-300 hover:scale-105 transform"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-              <span className="hidden xs:inline">Переглянути саджанці</span>
               <span className="xs:hidden">Саджанці</span>
             </button>
             <button
@@ -208,7 +204,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-2 bg-accent text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg hover:bg-light-accent focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-white transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 bg-accent text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-light-accent focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-white transition-all duration-300 mb-1"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -266,7 +262,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center text-secondary mb-12">Контакти</h3>
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-5">
               {/* Телефон з месенджерами */}
               <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className="text-center">
@@ -315,7 +311,7 @@ export default function Home() {
                   </div>
                   <h4 className="text-xl font-semibold text-secondary mb-4">Наша адреса</h4>
                   <p className="text-lg text-secondary leading-relaxed">
-                    Україна, Закарпатська область<br />
+                    с.Бене, Берегівський р-н., Закарпатська обл.<br />
                     Екологічно чистий район<br />
                     <span className="text-accent font-medium">Доставка по всій Україні</span>
                   </p>
@@ -332,10 +328,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {/* Про компанію */}
             <div>
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
+                <Image
+                  src="/logo/garden_logo.jpg"
+                  alt="Логотип Сад Олега"
+                  width={64}
+                  height={64}
+                  className="object-cover"
+                />
+              </div>
               <h4 className="text-xl font-bold mb-4">Сад Олега</h4>
-              <p className="text-white/80 leading-relaxed">
-                Вирощуємо саджанці хурми з 2015 року. Екологічно чисті рослини з відкритою кореневою системою.
-              </p>
             </div>
 
             {/* Швидкі посилання */}
