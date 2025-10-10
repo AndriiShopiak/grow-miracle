@@ -42,6 +42,11 @@ function BackButton() {
   );
 }
 
+// Helper function to check if a field should be rendered
+const shouldRenderField = (value: string | undefined): boolean => {
+  return value !== undefined && value.trim() !== "" && value.trim() !== "—";
+};
+
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
   const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
@@ -78,71 +83,93 @@ export default function DetailRight({ item }: { item: Cultivar }) {
       </div>
 
       {/* Опис плодів */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-5 border border-amber-200/50">
-        <h3 className="text-xl font-semibold text-secondary mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
-          Опис плодів
-        </h3>
-        <p className="text-gray-800 leading-8 text-lg">{item.fruits}</p>
-      </div>
+      {shouldRenderField(item.fruits) && (
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-5 border border-amber-200/50">
+          <h3 className="text-xl font-semibold text-secondary mb-3 flex items-center gap-2">
+            <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
+            Опис плодів
+          </h3>
+          <p className="text-gray-800 leading-8 text-lg">{item.fruits}</p>
+        </div>
+      )}
 
       {/* Характеристики продукту */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200/50">
-        <h3 className="text-xl font-semibold text-secondary mb-4 flex items-center gap-2">
-          <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-          Характеристики
-        </h3>
-        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Смак</dt>
-            <dd className="text-gray-800 text-base">{item.taste}</dd>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Самоплідність</dt>
-            <dd className="text-gray-800 text-base">{item.selfFertility}</dd>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Врожайність</dt>
-            <dd className="text-gray-800 text-base">{item.yield}</dd>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Морозостійкість</dt>
-            <dd className="text-gray-800 text-base">{item.frostResistance}</dd>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Підщепа</dt>
-            <dd className="text-gray-800 text-base">{item.rootstock}</dd>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-            <dt className="font-semibold text-blue-800 text-base mb-1">Висота саджанця</dt>
-            <dd className="text-gray-800 text-base">{item.height}</dd>
-          </div>
-        </dl>
-      </div>
+      {(shouldRenderField(item.taste) || shouldRenderField(item.selfFertility) || shouldRenderField(item.yield) || shouldRenderField(item.frostResistance) || shouldRenderField(item.rootstock) || shouldRenderField(item.height)) && (
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200/50">
+          <h3 className="text-xl font-semibold text-secondary mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+            Характеристики
+          </h3>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {shouldRenderField(item.taste) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Смак</dt>
+              <dd className="text-gray-800 text-base">{item.taste}</dd>
+            </div>
+          )}
+          {shouldRenderField(item.selfFertility) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Самоплідність</dt>
+              <dd className="text-gray-800 text-base">{item.selfFertility}</dd>
+            </div>
+          )}
+          {shouldRenderField(item.yield) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Врожайність</dt>
+              <dd className="text-gray-800 text-base">{item.yield}</dd>
+            </div>
+          )}
+          {shouldRenderField(item.frostResistance) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Морозостійкість</dt>
+              <dd className="text-gray-800 text-base">{item.frostResistance}</dd>
+            </div>
+          )}
+          {shouldRenderField(item.rootstock) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Підщепа</dt>
+              <dd className="text-gray-800 text-base">{item.rootstock}</dd>
+            </div>
+          )}
+          {shouldRenderField(item.height) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+              <dt className="font-semibold text-blue-800 text-base mb-1">Висота саджанця</dt>
+              <dd className="text-gray-800 text-base">{item.height}</dd>
+            </div>
+          )}
+          </dl>
+        </div>
+      )}
 
       {/* Особливості вирощування */}
-      <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-200/50">
-        <h3 className="text-xl font-semibold text-secondary mb-4 flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-          Особливості вирощування
-        </h3>
-        <div className="space-y-3">
-          <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-            <span className="font-semibold text-green-800 text-base">Посадка:</span>
-            <p className="text-gray-800 text-base mt-1">{item.cultivation.planting}</p>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-            <span className="font-semibold text-green-800 text-base">Догляд:</span>
-            <p className="text-gray-800 text-base mt-1">{item.cultivation.care}</p>
-          </div>
-          <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-            <span className="font-semibold text-green-800 text-base">Період плодоношення:</span>
-            <p className="text-gray-800 text-base mt-1">{item.cultivation.bearingPeriod}</p>
+      {(shouldRenderField(item.cultivation.planting) || shouldRenderField(item.cultivation.care) || shouldRenderField(item.cultivation.bearingPeriod)) && (
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-200/50">
+          <h3 className="text-xl font-semibold text-secondary mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+            Особливості вирощування
+          </h3>
+          <div className="space-y-3">
+          {shouldRenderField(item.cultivation.planting) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+              <span className="font-semibold text-green-800 text-base">Посадка:</span>
+              <p className="text-gray-800 text-base mt-1">{item.cultivation.planting}</p>
+            </div>
+          )}
+          {shouldRenderField(item.cultivation.care) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+              <span className="font-semibold text-green-800 text-base">Догляд:</span>
+              <p className="text-gray-800 text-base mt-1">{item.cultivation.care}</p>
+            </div>
+          )}
+          {shouldRenderField(item.cultivation.bearingPeriod) && (
+            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+              <span className="font-semibold text-green-800 text-base">Період плодоношення:</span>
+              <p className="text-gray-800 text-base mt-1">{item.cultivation.bearingPeriod}</p>
+            </div>
+          )}
           </div>
         </div>
-        
-        
-      </div>
+      )}
 
       {/* Кнопки дій */}
       <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-5 border border-gray-200/50">
