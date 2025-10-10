@@ -12,8 +12,8 @@ export default function CartPage() {
   const isEmpty = items.length === 0;
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-secondary mb-6">Кошик</h1>
+    <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-3xl font-bold text-secondary mb-6">Кошик</h1>
       {isEmpty ? (
         <div className="bg-white rounded-xl p-8 text-center shadow">
           <p className="text-gray-700 mb-4">Ваш кошик порожній</p>
@@ -22,27 +22,27 @@ export default function CartPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.id} className="flex gap-4 bg-white rounded-xl p-4 shadow items-center">
-                <div className="relative w-24 h-24 rounded-lg overflow-hidden">
+              <div key={item.id} className="flex gap-3 sm:gap-4 bg-white rounded-xl p-3 sm:p-4 shadow items-center">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0">
                   <Image src={item.image} alt={item.title} fill className="object-cover" />
                 </div>
-                <div className="flex-1">
-                  <h2 className="text-lg font-semibold text-secondary">{item.title}</h2>
-                  <div className="mt-1 text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{formatCurrency(item.price)}</span></div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-base sm:text-lg font-semibold text-secondary truncate">{item.title}</h2>
+                  <div className="mt-1 text-xs sm:text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{formatCurrency(item.price)}</span></div>
                   <div className="mt-2 inline-flex items-center rounded-md border border-gray-300">
-                    <button onClick={() => dec(item.id)} className="px-3 py-1 hover:bg-gray-100">-</button>
-                    <span className="px-4">{item.qty}</span>
-                    <button onClick={() => inc(item.id)} className="px-3 py-1 hover:bg-gray-100">+</button>
+                    <button onClick={() => dec(item.id)} className="px-2 sm:px-3 py-1 hover:bg-gray-100 text-sm">-</button>
+                    <span className="px-2 sm:px-4 text-sm">{item.qty}</span>
+                    <button onClick={() => inc(item.id)} className="px-2 sm:px-3 py-1 hover:bg-gray-100 text-sm">+</button>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-sm text-gray-500">Сума</div>
-                  <div className="text-base font-semibold text-secondary">{formatCurrency(item.qty * item.price)}</div>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-xs sm:text-sm text-gray-500">Сума</div>
+                  <div className="text-sm sm:text-base font-semibold text-secondary">{formatCurrency(item.qty * item.price)}</div>
                 </div>
-                <button onClick={() => remove(item.id)} className="text-sm text-red-600 hover:underline">Видалити</button>
+                <button onClick={() => remove(item.id)} className="text-xs sm:text-sm text-red-600 hover:underline flex-shrink-0">Видалити</button>
               </div>
             ))}
           </div>
