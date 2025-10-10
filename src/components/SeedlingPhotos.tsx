@@ -25,7 +25,6 @@ export default function SeedlingPhotos({ product }: SeedlingPhotosProps) {
     // Для шовковиці
     if (species.toLowerCase().includes('шовковиця')) {
       return [
-        { src: "/shovkovitcha/1.jpg", alt: "Саджанці шовковиці" },
         { src: "/shovkovitcha/2.jpg", alt: "Саджанці шовковиці" }
       ];
     }
@@ -40,13 +39,8 @@ export default function SeedlingPhotos({ product }: SeedlingPhotosProps) {
         { src: "/closed/5.jpg", alt: "Саджанці з закритою кореневою системою" }
       ];
     } else {
-      // Для відкритої кореневої системи - використовуємо фото з папки products
-      return [
-        { src: "/gallery/4.jpg", alt: `Саджанці ${product.title}` },
-        { src: "/gallery/19.jpg", alt: `Саджанці ${product.title}` },
-        { src: "/gallery/20.jpg", alt: `Саджанці ${product.title}` },
-        { src: "/gallery/21.jpg", alt: `Саджанці ${product.title}` }
-      ];
+      // Все інше повертаємо пустий масив
+      return [];
     }
   };
 

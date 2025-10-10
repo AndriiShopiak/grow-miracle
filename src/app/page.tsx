@@ -109,41 +109,76 @@ export default function Home() {
       </header>
 
       {/* Hero секція */}
-      <section className="relative py-20 md:py-28 min-h-[60vh]">
-        {/* Фонове зображення */}
-        <Image
-          src="/products/18.jpg"
-          alt="Саджанці хурми"
-          fill
-          priority
-          className="object-cover z-0"
-          sizes="100vw"
-        />
-        {/* Градієнтна підкладка для контрасту тексту */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-primary/60 z-10" />
-        <div className="relative z-20 container mx-auto px-4 text-center max-w-3xl">
-          <div className="mx-auto bg-black/20 backdrop-blur-sm rounded-2xl px-6 py-8 mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Саджанці хурми з відкритою кореневою системою
+      <section className="relative py-20 md:py-32 min-h-[70vh] overflow-hidden">
+        {/* Фонове зображення з паралакс ефектом */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/products/18.jpg"
+            alt="Саджанці хурми"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        
+        {/* Покращена градієнтна підкладка */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-primary/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+        
+        <div className="relative z-20 container mx-auto px-4 text-center max-w-4xl">
+          {/* Контейнер з покращеним дизайном без hover-ефектів */}
+          <div className="mx-auto bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-md rounded-3xl px-8 py-12 mb-10 border border-white/20 shadow-2xl">
+            {/* Декоративна лінія зверху */}
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mb-8 rounded-full"></div>
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
+              Сад Олега — тут росте диво
             </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Вибрані сорти для українського клімату: солодкі без в&apos;яжучості, ранні та пізні.
-              Саджанці з відкритою кореневою системою — найкращий вибір для успішної посадки.
-              Допоможемо підібрати саджанець під вашу ділянку та догляд.
-            </p>
+            
+            <div className="w-32 h-1 bg-gradient-to-r from-accent via-white to-accent mx-auto mb-8 rounded-full"></div>
+            
+            <div className="max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-white/95 mb-6 leading-relaxed font-light">
+                Ми вирощуємо саджанці плодових і екзотичних культур: 
+                <span className="text-accent font-medium"> хурму, азіміну (pawpaw), інжир, гранат, ківі</span> та багато інших.
+              </p>
+              <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
+                Наші рослини виростають із <span className="text-accent font-medium">любов&apos;ю</span> на закарпатській землі, 
+                у чистому довкіллі та під пильним доглядом.
+              </p>
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+                Пропонуємо саджанці з <span className="text-accent font-medium">відкритою та закритою кореневою системою</span>, 
+                щоб кожен садівник міг обрати зручний варіант.
+              </p>
+              <p className="text-lg md:text-xl text-white/90 mt-4 italic">
+                У &quot;Саді Олега&quot; ми створюємо не просто посадковий матеріал — 
+                <span className="text-accent font-medium"> ми допомагаємо вирощувати життя, красу і врожай</span>.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+          
+          {/* Покращені кнопки з анімацією */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center overflow-hidden px-4 py-2">
             <button
               onClick={() => scrollToSection('products')}
-              className="w-full sm:w-auto inline-block bg-accent text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-semibold hover:bg-light-accent transition-colors shadow-lg text-center"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-gradient-to-r from-accent to-light-accent text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:from-light-accent hover:to-accent transition-all duration-300 hover:scale-105 transform"
             >
-              Переглянути саджанці
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span className="hidden xs:inline">Переглянути саджанці</span>
+              <span className="xs:hidden">Саджанці</span>
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="w-full sm:w-auto inline-block bg-white/20 backdrop-blur-sm text-white border-2 border-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-semibold hover:bg-white/30 transition-colors shadow-lg text-center"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-4 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 transform"
             >
-              Зв&apos;язатися з нами
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              <span className="hidden xs:inline">Зв&apos;язатися з нами</span>
+              <span className="xs:hidden">Контакти</span>
             </button>
           </div>
         </div>
@@ -191,18 +226,22 @@ export default function Home() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-                <h3 className="text-3xl font-bold text-secondary mb-6">Про наш сад</h3>
+                <h3 className="text-3xl font-bold text-secondary mb-6">Про нас</h3>
                 <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
-                  Ми вирощуємо саджанці хурми з 2015 року. Наш сад розташований у екологічно чистому районі,
-                  де ми використовуємо тільки природні методи вирощування без хімічних добрив та пестицидів.
+                  Сад Олега — це сімейна справа, народжена з любові до природи й землі.
+                  Ми почали з кількох саджанців хурми у власному дворі, а сьогодні вирощуємо десятки сортів плодових і екзотичних дерев, 
+                  серед яких <span className="text-accent font-medium">азіміна, інжир, гранат, ківі</span> та багато інших.
                 </p>
                 <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
-                  Всі наші саджанці мають відкриту кореневу систему, що забезпечує кращу приживаність
-                  та швидший розвиток рослин після посадки. Це перевага перед саджанцями в контейнерах.
+                  Ми віримо, що кожен сад може стати місцем спокою, краси та щедрого врожаю.
+                  Саме тому ми з турботою доглядаємо кожен саджанець — від насінини до готової рослини.
                 </p>
-                <p className="text-lg md:text-xl text-secondary leading-relaxed">
-                  Кожен саджанець вирощується з турботою, щоб забезпечити вашу родину найкращими
-                  та найздоровішими рослинами для вашого саду.
+                <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
+                  Наш розсадник — це не просто бізнес, а <span className="text-accent font-medium">справа серця</span>, 
+                  у яку вкладено любов, терпіння і душу.
+                </p>
+                <p className="text-lg md:text-xl text-secondary leading-relaxed font-medium">
+                  Ми хочемо, щоб у вашому саду теж росло диво 🌳
                 </p>
               </div>
             </div>
