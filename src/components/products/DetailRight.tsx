@@ -51,10 +51,10 @@ export default function DetailRight({ item }: { item: Cultivar }) {
       <div className="bg-gradient-to-r from-light-green/20 to-accent/10 rounded-2xl p-6 border border-light-green/30">
         <h1 className="text-4xl font-bold text-secondary mb-4">{item.title}</h1>
         <div className="inline-flex items-center gap-2 rounded-xl bg-white/80 backdrop-blur-sm px-4 py-3 ring-2 ring-accent shadow-lg">
-          <span className="text-4xl font-extrabold text-secondary">
-            {getProductPrice(item)} грн/шт
+          <span className="text-3xl font-extrabold text-secondary">
+            {getProductPrice(item)} грн
           </span>
-          <span className="text-sm font-medium uppercase tracking-wide text-accent bg-accent/10 rounded px-2 py-1">за одиницю</span>
+          <span className="text-sm font-medium uppercase tracking-wide text-white bg-accent rounded px-2 py-1 shadow-sm">за одиницю</span>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <span className="inline-flex items-center rounded-full bg-light-green/70 text-secondary text-base font-medium px-4 py-2 shadow-sm">
             {item.species}
           </span>
-          <span className="inline-flex items-center rounded-full bg-accent/15 text-accent text-base font-medium px-4 py-2 shadow-sm">
+          <span className="inline-flex items-center rounded-lg bg-accent/20 text-accent text-base font-medium px-4 py-2 shadow-sm border border-accent/30">
             Дозрівання: {item.ripeningTerm}
           </span>
           <span className={`inline-flex items-center rounded-full text-base font-medium px-4 py-2 shadow-sm ${
@@ -167,7 +167,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
                 const price = getProductPrice(item);
                 add({ id: item.id, title: item.title, image: item.image, price });
               }}
-              className="flex-1 rounded-lg border-2 border-primary bg-white px-6 py-3 text-primary hover:bg-light-green/20 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-lg"
+              className="flex-1 rounded-lg border-2 border-primary bg-white px-6 py-3 text-primary hover:bg-light-green/20 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
               Додати до кошика
             </button>

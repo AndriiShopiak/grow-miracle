@@ -45,14 +45,14 @@ export default function ProductFilter({ onFilterChange, totalCount, filteredCoun
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-6">
         <h3 className="text-lg font-semibold text-secondary">Фільтри</h3>
-        <div className="text-sm text-gray-600">
+        <div className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
           Показано {filteredCount} з {totalCount} продуктів
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {/* Фільтр по категорії */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">

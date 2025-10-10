@@ -121,7 +121,7 @@ function ProductGridWithSearchParams() {
       
       {/* Products info */}
       <div className="mb-6 text-center">
-        <p className="text-gray-600">
+        <p className="text-xs sm:text-sm text-gray-600 px-2">
           Показано {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} з {filteredProducts.length} продуктів
         </p>
       </div>
@@ -137,7 +137,7 @@ function ProductGridWithSearchParams() {
             <Image src={item.image} alt={item.title} fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent opacity-90" />
             <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
-              <h4 className="text-white text-xl font-semibold drop-shadow">{item.title}</h4>
+              <h4 className="text-white text-sm sm:text-xl font-semibold drop-shadow line-clamp-2">{item.title}</h4>
             </div>
             {(itemIdsInCart.has(item.id) || justAddedIds.has(item.id)) && (
               <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-emerald-600/90 text-white text-xs font-medium px-2.5 py-1 shadow">
@@ -166,17 +166,17 @@ function ProductGridWithSearchParams() {
               {item.fruits}
             </p>
             <div className="mt-5">
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Link
                   href={`/products/${item.id}?${searchParams.toString()}`}
-                  className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-white text-sm font-medium transition-colors hover:bg-secondary"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg bg-primary px-3 sm:px-4 py-2 text-white text-xs sm:text-sm font-medium transition-colors hover:bg-secondary"
                 >
                   Деталі
                 </Link>
                 {itemIdsInCart.has(item.id) ? (
                   <button
                     disabled
-                    className="inline-flex items-center rounded-lg border border-gray-300 px-4 py-2 text-gray-500 text-sm font-medium cursor-default"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border border-gray-300 px-3 sm:px-4 py-2 text-gray-500 text-xs sm:text-sm font-medium cursor-default"
                   >
                     В кошику
                   </button>
@@ -187,7 +187,7 @@ function ProductGridWithSearchParams() {
                       add({ id: item.id, title: item.title, image: item.image, price });
                       markJustAdded(item.id);
                     }}
-                    className="inline-flex items-center rounded-lg border border-primary px-4 py-2 text-primary text-sm font-medium transition-colors hover:bg-light-green/40"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border border-primary px-3 sm:px-4 py-2 text-primary text-xs sm:text-sm font-medium transition-colors hover:bg-light-green/40"
                   >
                     До кошика
                   </button>
