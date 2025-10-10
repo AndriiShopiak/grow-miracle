@@ -64,7 +64,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <span className="inline-flex items-center rounded-full bg-light-green/70 text-secondary text-base font-medium px-4 py-2 shadow-sm">
             {item.species}
           </span>
-          <span className="inline-flex items-center rounded-lg bg-accent/20 text-accent text-base font-medium px-4 py-2 shadow-sm border border-accent/30">
+          <span className="inline-flex items-center rounded-lg bg-accent/20 text-secondary text-base font-medium px-4 py-2 shadow-sm border border-accent/30">
             Дозрівання: {item.ripeningTerm}
           </span>
           <span className={`inline-flex items-center rounded-full text-base font-medium px-4 py-2 shadow-sm ${
