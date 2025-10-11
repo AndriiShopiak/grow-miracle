@@ -4,12 +4,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
 import OrderForm from "@/components/OrderForm";
+import { useState } from "react";
 
 export default function CartPage() {
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const { items, inc, dec, remove, clear, totalItems } = useCart();
   const formatCurrency = (value: number) => `${value.toLocaleString("uk-UA")} грн`;
   const totalAmount = items.reduce((sum, item) => sum + item.qty * item.price, 0);
   const isEmpty = items.length === 0;
+
+  if (submitStatus === "success") {
+    return (
+      <div className="bg-white rounded-xl p-8 text-center shadow mt-10">
+        <div className="text-green-600 text-6xl mb-4">✅</div>
+        <h3 className="text-2xl font-bold text-secondary mb-4">Замовлення прийнято!</h3>
+        <p className="text-gray-700 mb-6">
+          Дякуємо за замовлення! Ми зв&apos;яжемося з вами найближчим часом.
+        </p>
+        <Link href="/" onClick={clear} className="inline-block rounded-lg bg-primary px-5 py-2 text-white hover:bg-secondary transition-colors">
+          Продовжити покупки
+        </Link>
+      </div>
+    );
+  }
+  if (submitStatus === "error") {
+    return (
+      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+        Помилка при відправці замовлення. Спробуйте ще раз або зв&apos;яжіться з нами по телефону.
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
@@ -58,7 +82,7 @@ export default function CartPage() {
                 Очистити кошик
               </button>
             </div>
-            <OrderForm />
+            <OrderForm setSubmitStatus={setSubmitStatus} />
           </div>
         </div>
       )}
