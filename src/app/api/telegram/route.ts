@@ -9,7 +9,7 @@ const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { items, customerInfo } = body;
+    const { items, customerInfo, clientTime } = body;
 
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
       return NextResponse.json(
@@ -62,7 +62,9 @@ export async function POST(request: NextRequest) {
     message += `Всього позицій: ${items.length}\n`;
     message += `Загальна кількість: ${totalItems} шт.\n`;
     message += `До сплати: ${totalAmount.toLocaleString('uk-UA')} грн\n`;
-    message += `\n⏰ Час замовлення: ${new Date().toLocaleString('uk-UA')}`;
+    // Використовуємо час клієнта, якщо він переданий, інакше серверний час
+    const orderTime = clientTime ? new Date(clientTime).toLocaleString('uk-UA') : new Date().toLocaleString('uk-UA');
+    message += `\n⏰ Час замовлення: ${orderTime}`;
 
     // Відправляємо повідомлення в Telegram
     const telegramResponse = await axios.post(

@@ -41,6 +41,7 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
         body: JSON.stringify({
           items,
           customerInfo,
+          clientTime: new Date().toISOString(),
         }),
       });
       if (response.ok) {
