@@ -9,9 +9,11 @@ interface CustomerInfo {
   surname: string;
   phone: string;
   email?: string;
-  address?: string;
+  novaPoshtaAddress: string;
+  novaPoshtaBranchNumber: string;
   comments?: string;
 }
+
 
 interface OrderFormProps {
   onOrderSent?: () => void;
@@ -25,7 +27,8 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
     surname: "",
     phone: "",
     email: "",
-    address: "",
+    novaPoshtaAddress: "",
+    novaPoshtaBranchNumber: "",
     comments: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,6 +71,7 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
       [field]: value,
     }));
   };
+
 
   if (items.length === 0) {
     return (
@@ -145,16 +149,31 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
         </div>
 
         <div>
-          <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-            Адреса доставки
+          <label htmlFor="novaPoshtaAddress" className="block text-sm font-medium text-gray-700 mb-1">
+            Адреса доставки (Нова Пошта) <span className="text-red-500 font-bold">*</span>
           </label>
           <textarea
-            id="address"
-            value={customerInfo.address}
-            onChange={(e) => handleInputChange("address", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+            id="novaPoshtaAddress"
+            required
+            value={customerInfo.novaPoshtaAddress}
+            onChange={(e) => handleInputChange("novaPoshtaAddress", e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
             rows={3}
-            placeholder="Вкажіть адресу доставки"
+            placeholder="Вкажіть адресу доставки (місто, область , район)"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="novaPoshtaBranchNumber" className="block text-sm font-medium text-gray-700 mb-1">
+            Номер відділення Нової Пошти
+          </label>
+          <input
+            type="text"
+            id="novaPoshtaBranchNumber"
+            value={customerInfo.novaPoshtaBranchNumber}
+            onChange={(e) => handleInputChange("novaPoshtaBranchNumber", e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
+            placeholder="Наприклад: відділення №1"
           />
         </div>
 

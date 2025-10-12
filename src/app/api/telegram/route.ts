@@ -29,11 +29,18 @@ export async function POST(request: NextRequest) {
     if (customerInfo.email) {
       message += `Email: ${customerInfo.email}\n`;
     }
-    if (customerInfo.address) {
-      message += `Адреса: ${customerInfo.address}\n`;
+    
+    // Інформація про доставку
+    message += `\n🚚 *Доставка (Нова Пошта):*\n`;
+    if (customerInfo.novaPoshtaAddress) {
+      message += `Адреса: ${customerInfo.novaPoshtaAddress}\n`;
     }
+    if (customerInfo.novaPoshtaBranchNumber) {
+      message += `Відділення: ${customerInfo.novaPoshtaBranchNumber}\n`;
+    }
+    
     if (customerInfo.comments) {
-      message += `Коментарі: ${customerInfo.comments}\n`;
+      message += `\n💬 *Коментарі:* ${customerInfo.comments}\n`;
     }
     
     message += `\n📦 *Замовлення:*\n`;
