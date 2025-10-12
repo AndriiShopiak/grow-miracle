@@ -619,7 +619,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/26.jpg",
-    price: "800 грн/шт",
+    price: "1000 грн/шт",
   },
   {
     id: 27,
