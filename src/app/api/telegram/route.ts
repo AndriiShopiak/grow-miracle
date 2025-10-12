@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
     // Інформація про клієнта
     message += `👤 *Клієнт:*\n`;
     message += `Ім'я: ${customerInfo.name}\n`;
+    message += `Прізвище: ${customerInfo.surname}\n`;
     message += `Телефон: ${customerInfo.phone}\n`;
     if (customerInfo.email) {
       message += `Email: ${customerInfo.email}\n`;

@@ -6,6 +6,7 @@ import { useCart } from "@/components/cart/CartContext";
 
 interface CustomerInfo {
   name: string;
+  surname: string;
   phone: string;
   email?: string;
   address?: string;
@@ -21,6 +22,7 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
   const { items, clear } = useCart();
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: "",
+    surname: "",
     phone: "",
     email: "",
     address: "",
@@ -93,8 +95,23 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
             required
             value={customerInfo.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            className="w-full px-3 py-2 border-2 border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-red-50"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
             placeholder="Ваше ім&apos;я"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="surname" className="block text-sm font-medium text-gray-700 mb-1">
+            Прізвище <span className="text-red-500 font-bold">*</span>
+          </label>
+          <input
+            type="text"
+            id="surname"
+            required
+            value={customerInfo.surname}
+            onChange={(e) => handleInputChange("surname", e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
+            placeholder="Ваше прізвище"
           />
         </div>
 
@@ -108,7 +125,7 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
             required
             value={customerInfo.phone}
             onChange={(e) => handleInputChange("phone", e.target.value)}
-            className="w-full px-3 py-2 border-2 border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-red-50"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
             placeholder="+380 50 123 45 67"
           />
         </div>
