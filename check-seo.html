@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка SEO файлів</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+        .good { background: #d4edda; }
+        .bad { background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Перевірка SEO файлів для "Сад Олега"</h1>
+    
+    <div class="test-section">
+        <h3>📁 Перевірка robots.txt та sitemap.xml</h3>
+        <button onclick="checkRobots()">Перевірити robots.txt</button>
+        <button onclick="checkSitemap()">Перевірити sitemap.xml</button>
+        <button onclick="checkAll()">Перевірити все</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <div class="test-section info">
+        <h3>📋 Очікувані результати:</h3>
+        <p><strong>robots.txt:</strong> Має містити дозволи для пошукових роботів та посилання на sitemap</p>
+        <p><strong>sitemap.xml:</strong> Має містити всі 46 сторінок (головна + галерея + 44 продукти)</p>
+    </div>
+
+    <div class="test-section">
+        <h3>🌐 URL для перевірки:</h3>
+        <ul>
+            <li><a href="http://localhost:3000/robots.txt" target="_blank">http://localhost:3000/robots.txt</a></li>
+            <li><a href="http://localhost:3000/sitemap.xml" target="_blank">http://localhost:3000/sitemap.xml</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const baseUrl = 'http://localhost:3000';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(message, isGood = true) {
+            const div = document.createElement('div');
+            div.className = `result ${isGood ? 'good' : 'bad'}`;
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+
+        async function checkRobots() {
+            try {
+                const response = await fetch(`${baseUrl}/robots.txt`);
+                if (response.ok) {
+                    const text = await response.text();
+                    addResult('✅ robots.txt знайдено!');
+                    addResult(`<pre>${text}</pre>`);
+                    
+                    // Перевіряємо ключові елементи
+                    if (text.includes('User-agent: *')) {
+                        addResult('✅ Дозволи для всіх роботів налаштовані');
+                    } else {
+                        addResult('❌ Не знайдено дозволів для роботів', false);
+                    }
+                    
+                    if (text.includes('Sitemap:')) {
+                        addResult('✅ Посилання на sitemap знайдено');
+                    } else {
+                        addResult('❌ Посилання на sitemap відсутнє', false);
+                    }
+                } else {
+                    addResult('❌ robots.txt не знайдено!', false);
+                }
+            } catch (error) {
+                addResult(`❌ Помилка при перевірці robots.txt: ${error.message}`, false);
+            }
+        }
+
+        async function checkSitemap() {
+            try {
+                const response = await fetch(`${baseUrl}/sitemap.xml`);
+                if (response.ok) {
+                    const text = await response.text();
+                    addResult('✅ sitemap.xml знайдено!');
+                    
+                    // Підраховуємо кількість URL
+                    const urlMatches = text.match(/<url>/g);
+                    const urlCount = urlMatches ? urlMatches.length : 0;
+                    addResult(`📊 Знайдено ${urlCount} URL в sitemap`);
+                    
+                    if (urlCount >= 46) {
+                        addResult('✅ Достатня кількість URL (очікувано 46)');
+                    } else {
+                        addResult(`⚠️ Мало URL (очікувано 46, знайдено ${urlCount})`, false);
+                    }
+                    
+                    // Перевіряємо ключові сторінки
+                    if (text.includes('<loc>http://localhost:3000/</loc>')) {
+                        addResult('✅ Головна сторінка включена');
+                    } else {
+                        addResult('❌ Головна сторінка відсутня', false);
+                    }
+                    
+                    if (text.includes('<loc>http://localhost:3000/gallery</loc>')) {
+                        addResult('✅ Галерея включена');
+                    } else {
+                        addResult('❌ Галерея відсутня', false);
+                    }
+                    
+                    if (text.includes('<loc>http://localhost:3000/products/1</loc>')) {
+                        addResult('✅ Продукти включені');
+                    } else {
+                        addResult('❌ Продукти відсутні', false);
+                    }
+                } else {
+                    addResult('❌ sitemap.xml не знайдено!', false);
+                }
+            } catch (error) {
+                addResult(`❌ Помилка при перевірці sitemap.xml: ${error.message}`, false);
+            }
+        }
+
+        async function checkAll() {
+            resultsDiv.innerHTML = '';
+            addResult('🔄 Починаємо перевірку...');
+            await checkRobots();
+            await checkSitemap();
+            addResult('✅ Перевірка завершена!');
+        }
+
+        // Автоматично перевіряємо при завантаженні
+        window.addEventListener('load', () => {
+            addResult('🚀 Готово до перевірки! Натисніть кнопки вище.');
+        });
+    </script>
+</body>
+</html>

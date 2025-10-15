@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Schema.org розмітки</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; font-size: 12px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+        .good { background: #d4edda; }
+        .bad { background: #f8d7da; }
+        .warning { background: #fff3cd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Тест Schema.org розмітки для "Сад Олега"</h1>
+        
+        <div class="test-section info">
+            <h3>📋 Інструкції:</h3>
+            <ol>
+                <li>Відкрийте <a href="http://localhost:3000/products/1" target="_blank">http://localhost:3000/products/1</a></li>
+                <li>Натисніть F12 (Developer Tools)</li>
+                <li>Перейдіть на вкладку Elements</li>
+                <li>Знайдіть <code>&lt;script type="application/ld+json"&gt;</code></li>
+                <li>Скопіюйте JSON код і вставте в поле нижче</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Вставте JSON код тут:</h3>
+            <textarea id="jsonInput" rows="10" cols="80" placeholder="Вставте JSON код з браузера..."></textarea>
+            <br><br>
+            <button onclick="validateSchema()">✅ Перевірити Schema.org</button>
+            <button onclick="copyToValidator()">🔗 Відкрити Schema.org Validator</button>
+            <button onclick="showExample()">📋 Показати приклад</button>
+        </div>
+
+        <div id="results"></div>
+
+        <div class="test-section">
+            <h3>🌐 Онлайн інструменти (після деплою):</h3>
+            <ul>
+                <li><a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> - для перевірки rich snippets</li>
+                <li><a href="https://validator.schema.org/" target="_blank">Schema.org Validator</a> - для перевірки валідності</li>
+                <li><a href="https://developers.facebook.com/tools/debug/" target="_blank">Facebook Sharing Debugger</a> - для Open Graph</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const resultsDiv = document.getElementById('results');
+        const jsonInput = document.getElementById('jsonInput');
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+
+        function validateSchema() {
+            const jsonText = jsonInput.value.trim();
+            if (!jsonText) {
+                addResult('❌ Будь ласка, вставте JSON код', 'bad');
+                return;
+            }
+
+            try {
+                const data = JSON.parse(jsonText);
+                resultsDiv.innerHTML = '';
+                
+                addResult('✅ JSON код валідний!', 'good');
+                
+                // Перевіряємо основні поля
+                if (data['@context'] === 'https://schema.org') {
+                    addResult('✅ @context правильний', 'good');
+                } else {
+                    addResult('❌ @context неправильний', 'bad');
+                }
+
+                if (data['@type']) {
+                    addResult(`✅ @type: ${data['@type']}`, 'good');
+                } else {
+                    addResult('❌ @type відсутній', 'bad');
+                }
+
+                if (data['@type'] === 'Product') {
+                    if (data.name) addResult(`✅ Назва продукту: ${data.name}`, 'good');
+                    if (data.description) addResult(`✅ Опис: ${data.description.substring(0, 100)}...`, 'good');
+                    if (data.image) addResult(`✅ Зображення: ${data.image}`, 'good');
+                    if (data.offers && data.offers.price) {
+                        addResult(`✅ Ціна: ${data.offers.price} ${data.offers.priceCurrency || 'UAH'}`, 'good');
+                    }
+                }
+
+                if (data['@type'] === 'LocalBusiness') {
+                    if (data.name) addResult(`✅ Назва бізнесу: ${data.name}`, 'good');
+                    if (data.telephone) addResult(`✅ Телефон: ${data.telephone}`, 'good');
+                    if (data.address) addResult(`✅ Адреса: ${data.address.streetAddress}, ${data.address.addressLocality}`, 'good');
+                }
+
+                addResult('🎉 Schema.org розмітка виглядає правильно!', 'good');
+                
+            } catch (error) {
+                addResult(`❌ Помилка в JSON: ${error.message}`, 'bad');
+            }
+        }
+
+        function copyToValidator() {
+            const jsonText = jsonInput.value.trim();
+            if (!jsonText) {
+                addResult('❌ Спочатку вставте JSON код', 'bad');
+                return;
+            }
+            
+            // Відкриваємо Schema.org Validator в новій вкладці
+            const validatorUrl = 'https://validator.schema.org/';
+            window.open(validatorUrl, '_blank');
+            
+            addResult('🔗 Відкрито Schema.org Validator. Вставте JSON код в поле "Code Snippet"', 'info');
+        }
+
+        function showExample() {
+            const exampleJson = {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "Соснівська",
+                "description": "хурма гібридна - солодкий, соковитий з незначною терпкістю",
+                "image": "https://sad-olega.com/products/1.jpg",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Сад Олега"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "800",
+                    "priceCurrency": "UAH",
+                    "availability": "https://schema.org/InStock"
+                }
+            };
+            
+            jsonInput.value = JSON.stringify(exampleJson, null, 2);
+            addResult('📋 Вставлено приклад JSON коду', 'info');
+        }
+
+        // Автоматично показуємо приклад при завантаженні
+        window.addEventListener('load', () => {
+            addResult('🚀 Готово! Відкрийте сторінку продукту і скопіюйте JSON код.', 'info');
+        });
+    </script>
+</body>
+</html>

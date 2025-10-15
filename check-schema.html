@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка Schema.org розмітки</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Перевірка Schema.org розмітки для "Сад Олега"</h1>
+    
+    <div class="test-section info">
+        <h3>📋 Інструкції для перевірки:</h3>
+        <ol>
+            <li><strong>Локальна перевірка:</strong> Відкрийте <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></li>
+            <li><strong>Перевірка продукту:</strong> Відкрийте <a href="http://localhost:3000/products/1" target="_blank">http://localhost:3000/products/1</a></li>
+            <li><strong>Перевірка галереї:</strong> Відкрийте <a href="http://localhost:3000/gallery" target="_blank">http://localhost:3000/gallery</a></li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>🛠️ Онлайн інструменти для перевірки:</h3>
+        <p><strong>1. Google Rich Results Test:</strong></p>
+        <p>Перейдіть на <a href="https://search.google.com/test/rich-results" target="_blank">https://search.google.com/test/rich-results</a></p>
+        <p>Вставте URL: <code>http://localhost:3000/products/1</code></p>
+        
+        <p><strong>2. Schema.org Validator:</strong></p>
+        <p>Перейдіть на <a href="https://validator.schema.org/" target="_blank">https://validator.schema.org/</a></p>
+        
+        <p><strong>3. Facebook Sharing Debugger:</strong></p>
+        <p>Перейдіть на <a href="https://developers.facebook.com/tools/debug/" target="_blank">https://developers.facebook.com/tools/debug/</a></p>
+    </div>
+
+    <div class="test-section">
+        <h3>📊 Що має показувати Google Rich Results Test:</h3>
+        <ul>
+            <li>✅ <strong>Product</strong> - розпізнавання продукту</li>
+            <li>✅ <strong>LocalBusiness</strong> - розпізнавання бізнесу</li>
+            <li>✅ <strong>WebSite</strong> - розпізнавання сайту</li>
+            <li>✅ <strong>ImageGallery</strong> - розпізнавання галереї</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h3>🔍 Як перевірити в браузері:</h3>
+        <ol>
+            <li>Відкрийте сторінку продукту</li>
+            <li>Натисніть <strong>F12</strong> (Developer Tools)</li>
+            <li>Перейдіть на вкладку <strong>Elements</strong></li>
+            <li>Знайдіть тег <code>&lt;script type="application/ld+json"&gt;</code></li>
+            <li>Скопіюйте JSON і вставте в <a href="https://validator.schema.org/" target="_blank">Schema.org Validator</a></li>
+        </ol>
+    </div>
+
+    <div class="test-section success">
+        <h3>✅ Очікувані результати:</h3>
+        <p><strong>Для продукту (products/1):</strong></p>
+        <pre>{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Соснівська",
+  "description": "хурма гібридна - солодкий, соковитий...",
+  "image": "https://sad-olega.com/products/1.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "800",
+    "priceCurrency": "UAH"
+  }
+}</pre>
+    </div>
+
+    <div class="test-section">
+        <h3>🚀 Наступні кроки після перевірки:</h3>
+        <ol>
+            <li>Задеплоїть сайт на хостинг</li>
+            <li>Додайте сайт в Google Search Console</li>
+            <li>Відправте sitemap.xml в Google</li>
+            <li>Зачекайте 1-2 тижні на індексацію</li>
+            <li>Перевірте результати в пошуку</li>
+        </ol>
+    </div>
+
+    <script>
+        // Простий скрипт для перевірки наявності Schema.org розмітки
+        function checkSchema() {
+            const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+            console.log('Знайдено Schema.org скриптів:', scripts.length);
+            
+            scripts.forEach((script, index) => {
+                try {
+                    const data = JSON.parse(script.textContent);
+                    console.log(`Schema ${index + 1}:`, data['@type'], data);
+                } catch (e) {
+                    console.error('Помилка парсингу JSON:', e);
+                }
+            });
+        }
+        
+        // Автоматично перевіряємо при завантаженні
+        window.addEventListener('load', checkSchema);
+    </script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 import Gallery from "@/components/Gallery";
 import Link from "next/link";
+import { generateImageGallerySchema } from "@/utils/schemaUtils";
+import { generateGalleryOGTags } from "@/utils/ogUtils";
+import type { Metadata } from "next";
 
 const imagesUrl = [
   "/gallery/1.jpg",
@@ -50,24 +53,65 @@ const images = Array.from({ length: imagesUrl.length }, (_, i) => {
   return { src: imagesUrl[i], alt: `Сад, фото ${n}` };
 });
 
-export const metadata = {
-  title: "Галерея — Сад Олега",
-  description: "Фото з нашого саду та господарства.",
+// Генеруємо мета-дані з Open Graph тегами
+const galleryOGTags = generateGalleryOGTags();
+
+export const metadata: Metadata = {
+  title: galleryOGTags.title,
+  description: galleryOGTags.description,
+  keywords: "галерея саду, фото саду, господарство Закарпаття, сад фото, вирощування саджанців, сад Олега фото, плодові культури фото",
+  openGraph: {
+    title: galleryOGTags.title,
+    description: galleryOGTags.description,
+    url: galleryOGTags.url,
+    siteName: galleryOGTags.siteName,
+    images: [
+      {
+        url: galleryOGTags.image,
+        width: 1200,
+        height: 630,
+        alt: galleryOGTags.imageAlt,
+      },
+    ],
+    locale: galleryOGTags.locale,
+    type: galleryOGTags.type,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: galleryOGTags.title,
+    description: galleryOGTags.description,
+    images: [galleryOGTags.image],
+  },
+  other: {
+    "og:image:alt": galleryOGTags.imageAlt,
+  },
 };
 
 export default function GalleryPage() {
+  const gallerySchema = generateImageGallerySchema();
+
   return (
-    <main className="container mx-auto px-4 py-10">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold text-secondary mb-2">Галерея</h1>
-      </div>
-      <Gallery images={images} columns={3} />
-      <div className="text-center mt-5">
-        <Link href="/" className="inline-block rounded-lg bg-accent px-5 py-2 text-white transition-colors">
-          На головну
-        </Link>
-      </div>
-    </main>
+    <>
+      {/* Schema.org розмітка для галереї */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(gallerySchema),
+        }}
+      />
+      
+      <main className="container mx-auto px-4 py-10">
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold text-secondary mb-2">Галерея</h1>
+        </div>
+        <Gallery images={images} columns={3} />
+        <div className="text-center mt-5">
+          <Link href="/" className="inline-block rounded-lg bg-accent px-5 py-2 text-white transition-colors">
+            На головну
+          </Link>
+        </div>
+      </main>
+    </>
   );
 }
 

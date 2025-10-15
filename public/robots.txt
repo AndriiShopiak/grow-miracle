@@ -1,0 +1,44 @@
+# Robots.txt для сайту "Сад Олега"
+# https://sad-olega.com
+
+# Дозволити всім пошуковим роботам сканувати сайт
+User-agent: *
+Allow: /
+
+# Заборонити сканування API ендпоінтів
+Disallow: /api/
+
+# Заборонити сканування кошика (приватна інформація)
+Disallow: /cart
+
+# Заборонити сканування Next.js внутрішніх файлів
+Disallow: /_next/
+Disallow: /_vercel/
+
+# Заборонити сканування адмін-панелей (якщо будуть)
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# Дозволити сканування всіх зображень
+Allow: /products/
+Allow: /gallery/
+Allow: /logo/
+Allow: /icons/
+
+# Вказати розташування sitemap
+Sitemap: https://sad-olega.com/sitemap.xml
+
+# Додаткові правила для Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Правила для Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Правила для Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

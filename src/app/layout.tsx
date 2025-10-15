@@ -3,6 +3,8 @@ import { Manrope, Merriweather, Geist_Mono, Source_Sans_3, Kalam } from "next/fo
 import "./globals.css";
 import Providers from "./providers";
 import CartLink from "@/components/cart/CartLink";
+import { generateLocalBusinessSchema, generateWebSiteSchema } from "@/utils/schemaUtils";
+import { generateHomeOGTags } from "@/utils/ogUtils";
 
 const manrope = Manrope({
   variable: "--font-sans",
@@ -35,9 +37,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Генеруємо мета-дані з Open Graph тегами
+const homeOGTags = generateHomeOGTags();
+
 export const metadata: Metadata = {
-  title: "Сад Олега - Тут росте диво",
-  description: "Свіжі овочі та фрукти з власного саду. Натуральні продукти для вашої родини.",
+  title: homeOGTags.title,
+  description: homeOGTags.description,
+  keywords: "саджанці хурми, саджанці персика, саджанці абрикоса, саджанці інжиру, сад Закарпаття, доставка саджанців, купити саджанці, плодові дерева, екзотичні рослини, хурма сорти, персик сорти, абрикос сорти",
+  authors: [{ name: "Сад Олега" }],
+  creator: "Сад Олега",
+  publisher: "Сад Олега",
+  robots: "index, follow",
+  openGraph: {
+    title: homeOGTags.title,
+    description: homeOGTags.description,
+    url: homeOGTags.url,
+    siteName: homeOGTags.siteName,
+    images: [
+      {
+        url: homeOGTags.image,
+        width: 1200,
+        height: 630,
+        alt: homeOGTags.imageAlt,
+      },
+    ],
+    locale: homeOGTags.locale,
+    type: homeOGTags.type,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeOGTags.title,
+    description: homeOGTags.description,
+    images: [homeOGTags.image],
+  },
+  other: {
+    "og:image:alt": homeOGTags.imageAlt,
+  },
 };
 
 export default function RootLayout({
@@ -45,8 +80,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const businessSchema = generateLocalBusinessSchema();
+  const websiteSchema = generateWebSiteSchema();
+
   return (
     <html lang="uk">
+      <head>
+        {/* Schema.org розмітка */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(businessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+      </head>
       <body
         className={`${manrope.variable} ${merriweather.variable} ${sourceSans.variable} ${kalam.variable} ${geistMono.variable} antialiased`}
       >
