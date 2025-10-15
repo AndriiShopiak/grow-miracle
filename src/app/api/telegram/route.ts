@@ -32,11 +32,21 @@ export async function POST(request: NextRequest) {
     
     // Інформація про доставку
     message += `\n🚚 *Доставка (Нова Пошта):*\n`;
-    if (customerInfo.novaPoshtaAddress) {
-      message += `Адреса: ${customerInfo.novaPoshtaAddress}\n`;
+    
+    // Нові структуровані поля
+    if (customerInfo.npCityName) {
+      message += `📍 Місто: ${customerInfo.npCityName}\n`;
     }
-    if (customerInfo.novaPoshtaBranchNumber) {
-      message += `Відділення: ${customerInfo.novaPoshtaBranchNumber}\n`;
+    if (customerInfo.npWarehouseNumber && customerInfo.npWarehouseAddress) {
+      message += `🏢 Відділення №${customerInfo.npWarehouseNumber}: ${customerInfo.npWarehouseAddress}\n`;
+    }
+    
+    // Старі поля (якщо є)
+    if (customerInfo.novaPoshtaAddress) {
+      message += `📝 Додаткова адреса: ${customerInfo.novaPoshtaAddress}\n`;
+    }
+    if (customerInfo.novaPoshtaBranchNumber && !customerInfo.npWarehouseNumber) {
+      message += `🏢 Відділення: ${customerInfo.novaPoshtaBranchNumber}\n`;
     }
     
     if (customerInfo.comments) {

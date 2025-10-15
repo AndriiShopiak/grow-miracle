@@ -155,6 +155,13 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Валідація полів Нової Пошти
+    if (!customerInfo.npCityRef || !customerInfo.npWarehouseRef) {
+      setErrorMsg("Будь ласка, оберіть місто та відділення Нової Пошти зі списку");
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -272,6 +279,9 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
         <div>
           <label htmlFor="npCity" className="block text-sm font-medium text-gray-700 mb-1">
             Місто (Нова Пошта) <span className="text-red-500 font-bold">*</span>
+            {!customerInfo.npCityRef && customerInfo.npCityName && (
+              <span className="text-red-500 text-xs ml-2">⚠️ Оберіть місто зі списку</span>
+            )}
           </label>
           <input
             id="npCity"
@@ -281,7 +291,9 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
               setCustomerInfo(prev => ({ ...prev, npCityName: undefined, npCityRef: undefined, npWarehouseRef: undefined, npWarehouseNumber: undefined, npWarehouseAddress: undefined }));
               setCityQuery(e.target.value);
             }}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
+            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50 ${
+              !customerInfo.npCityRef && customerInfo.npCityName ? 'border-red-500' : 'border-gray-300'
+            }`}
             placeholder="Почніть вводити місто..."
             autoComplete="off"
           />
@@ -310,6 +322,9 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
         <div>
           <label htmlFor="npWarehouse" className="block text-sm font-medium text-gray-700 mb-1">
             Відділення Нової Пошти <span className="text-red-500 font-bold">*</span>
+            {customerInfo.npCityRef && !customerInfo.npWarehouseRef && (
+              <span className="text-red-500 text-xs ml-2">⚠️ Оберіть відділення</span>
+            )}
           </label>
           <select
             id="npWarehouse"
@@ -325,7 +340,9 @@ export default function OrderForm({ onOrderSent, setSubmitStatus }: OrderFormPro
                 npWarehouseAddress: w ? (w.ShortAddress || w.Description) : undefined,
               }));
             }}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50"
+            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-orange-50 ${
+              customerInfo.npCityRef && !customerInfo.npWarehouseRef ? 'border-red-500' : 'border-gray-300'
+            }`}
           >
             <option value="" disabled>{warehousesLoading ? "Завантаження..." : (!customerInfo.npCityRef ? "Спочатку оберіть місто" : "Оберіть відділення")}</option>
             {warehouses.map((w) => (
