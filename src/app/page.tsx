@@ -34,6 +34,9 @@ export default function Home() {
                   width={64}
                   height={64}
                   className="object-cover"
+                  priority
+                  quality={85}
+                  sizes="(max-width: 640px) 48px, 64px"
                 />
               </div>
               <div className="min-w-0 flex-1">
@@ -119,6 +122,9 @@ export default function Home() {
             priority
             className="object-cover"
             sizes="100vw"
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
         </div>
         
@@ -250,6 +256,9 @@ export default function Home() {
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover"
                   priority={false}
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
             </div>
@@ -294,6 +303,8 @@ export default function Home() {
                         width={30}
                         height={30}
                         className="w-7 h-7"
+                        quality={90}
+                        sizes="28px"
                       />
                     </a>
                   </div>
@@ -335,6 +346,8 @@ export default function Home() {
                   width={64}
                   height={64}
                   className="object-cover"
+                  quality={85}
+                  sizes="(max-width: 640px) 48px, 64px"
                 />
               </div>
               <h4 className="text-xl font-bold mb-4">Сад Олега</h4>
