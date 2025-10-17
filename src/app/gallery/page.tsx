@@ -60,6 +60,9 @@ export const metadata: Metadata = {
   title: galleryOGTags.title,
   description: galleryOGTags.description,
   keywords: "галерея саду, фото саду, господарство Закарпаття, сад фото, вирощування саджанців, сад Олега фото, плодові культури фото",
+  alternates: {
+    canonical: "https://sad-olega.com/gallery",
+  },
   openGraph: {
     title: galleryOGTags.title,
     description: galleryOGTags.description,

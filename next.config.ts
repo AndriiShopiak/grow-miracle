@@ -40,6 +40,24 @@ const nextConfig: NextConfig = {
   
   // Компресія
   compress: true,
+  
+  // SEO оптимізації
+  trailingSlash: false,
+  
+  // Налаштування для уникнення переспрямувань
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

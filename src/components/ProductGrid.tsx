@@ -51,8 +51,9 @@ function ProductGridWithSearchParams() {
     const queryString = params.toString();
     const newURL = queryString ? `/?${queryString}` : '/';
     
-    // Update URL without causing a page reload
-    router.replace(newURL, { scroll: false });
+    // Use push instead of replace to avoid redirect issues
+    // This creates proper browser history without causing redirects
+    router.push(newURL, { scroll: false });
   };
 
   useEffect(() => {
@@ -177,7 +178,7 @@ function ProductGridWithSearchParams() {
             <div className="mt-5">
               <div className="flex flex-col sm:flex-row gap-2">
                 <Link
-                  href={`/products/${item.id}?${searchParams.toString()}`}
+                  href={`/products/${item.id}`}
                   className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg bg-primary px-3 sm:px-4 py-2 text-white text-xs sm:text-sm font-medium transition-colors hover:bg-secondary"
                 >
                   Деталі

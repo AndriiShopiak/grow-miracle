@@ -48,6 +48,9 @@ export const metadata: Metadata = {
   creator: "Сад Олега",
   publisher: "Сад Олега",
   robots: "index, follow",
+  alternates: {
+    canonical: "https://sad-olega.com/",
+  },
   openGraph: {
     title: homeOGTags.title,
     description: homeOGTags.description,

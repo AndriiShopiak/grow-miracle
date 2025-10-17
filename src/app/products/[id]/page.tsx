@@ -25,6 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "Товар не знайдено | Сад Олега",
       description: "Запитаний товар не знайдено.",
+      alternates: {
+        canonical: "https://sad-olega.com/",
+      },
     };
   }
 
@@ -34,6 +37,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: productOGTags.title,
     description: productOGTags.description,
     keywords: `саджанці, ${product.species}, ${product.title}, сад, Закарпаття, доставка`,
+    alternates: {
+      canonical: `https://sad-olega.com/products/${id}`,
+    },
     openGraph: {
       title: productOGTags.title,
       description: productOGTags.description,
