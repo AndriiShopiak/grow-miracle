@@ -48,6 +48,14 @@ export const metadata: Metadata = {
   creator: "Сад Олега",
   publisher: "Сад Олега",
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', type: 'image/x-icon' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   alternates: {
     canonical: "https://sad-olega.com/",
   },
