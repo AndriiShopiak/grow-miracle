@@ -1,4 +1,7 @@
-# Robots.txt для сайту "Сад Олега"
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const robotsTxt = `# Robots.txt для сайту "Сад Олега"
 # https://sad-olega.com
 
 # Дозволити всім пошуковим роботам сканувати сайт
@@ -41,4 +44,12 @@ Crawl-delay: 2
 # Правила для Bing
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 1`;
+
+  return new NextResponse(robotsTxt, {
+    headers: {
+      'Content-Type': 'text/plain',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+    },
+  });
+}

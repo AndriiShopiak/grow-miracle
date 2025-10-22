@@ -54,6 +54,32 @@ const nextConfig: NextConfig = {
             key: 'X-Robots-Tag',
             value: 'index, follow',
           },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+      // Спеціальні заголовки для продуктів
+      {
+        source: '/products/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=3600',
+          },
         ],
       },
     ];

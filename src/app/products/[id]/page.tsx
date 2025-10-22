@@ -5,6 +5,7 @@ import DetailRight from "@/components/products/DetailRight";
 import SeedlingPhotos from "@/components/SeedlingPhotos";
 import { generateProductSchema } from "@/utils/schemaUtils";
 import { generateProductOGTags } from "@/utils/ogUtils";
+import { createProductMetadata } from "@/utils/seoUtils";
 import type { Metadata } from "next";
 
 type Props = {
@@ -28,49 +29,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: {
         canonical: "https://sad-olega.com/",
       },
+      robots: "noindex, nofollow",
     };
   }
 
   const productOGTags = generateProductOGTags(product);
+  const canonicalUrl = `https://sad-olega.com/products/${id}`;
 
-  return {
-    title: productOGTags.title,
-    description: productOGTags.description,
-    keywords: `саджанці, ${product.species}, ${product.title}, сад, Закарпаття, доставка`,
-    alternates: {
-      canonical: `https://sad-olega.com/products/${id}`,
-    },
-    openGraph: {
-      title: productOGTags.title,
-      description: productOGTags.description,
-      url: productOGTags.url,
-      siteName: productOGTags.siteName,
-      images: [
-        {
-          url: productOGTags.image,
-          width: 1200,
-          height: 630,
-          alt: productOGTags.imageAlt,
-        },
-      ],
-      locale: productOGTags.locale,
-      type: productOGTags.type,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: productOGTags.title,
-      description: productOGTags.description,
-      images: [productOGTags.image],
-    },
-    other: {
+  return createProductMetadata(
+    productOGTags.title,
+    productOGTags.description,
+    canonicalUrl,
+    id,
+    {
+      "og:image": productOGTags.image,
       "og:image:alt": productOGTags.imageAlt,
+      "og:image:width": "1200",
+      "og:image:height": "630",
       "product:price:amount": productOGTags.product.price,
       "product:price:currency": productOGTags.product.currency,
       "product:availability": productOGTags.product.availability,
       "product:condition": productOGTags.product.condition,
       "product:brand": productOGTags.product.brand,
-    },
-  };
+    }
+  );
 }
 
 export default async function ProductDetail({ params }: Props) {
