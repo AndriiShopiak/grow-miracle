@@ -132,7 +132,13 @@ function ProductGridWithSearchParams() {
         {currentProducts.map((item) => (
         <div
           key={item.id}
-          className="group bg-white rounded-2xl shadow-md ring-1 ring-black/5 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-0.5"
+          className={`group bg-white rounded-2xl shadow-md ring-1 ring-black/5 overflow-hidden transition-all ${
+            item.availability === 'out_of_stock' 
+              ? 'opacity-60 grayscale-[0.3]' 
+              : item.availability === 'limited'
+              ? 'ring-orange-200/50 shadow-orange-100/50 hover:shadow-xl hover:-translate-y-0.5'
+              : 'hover:shadow-xl hover:-translate-y-0.5'
+          }`}
         >
           <div className="relative h-56">
             <Image 
@@ -153,6 +159,17 @@ function ProductGridWithSearchParams() {
               <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-emerald-600/90 text-white text-xs font-medium px-2.5 py-1 shadow">
                 <span>✓</span>
                 <span>Додано</span>
+              </div>
+            )}
+            {item.availability === 'out_of_stock' && (
+              <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-red-600/90 text-white text-xs font-medium px-2.5 py-1 shadow">
+                <span>Немає в наявності</span>
+              </div>
+            )}
+            {item.availability === 'limited' && !itemIdsInCart.has(item.id) && !justAddedIds.has(item.id) && (
+              <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-orange-600/90 text-white text-xs font-medium px-2.5 py-1 shadow">
+                <span>⚠</span>
+                <span>Обмежено</span>
               </div>
             )}
           </div>
@@ -190,16 +207,27 @@ function ProductGridWithSearchParams() {
                   >
                     В кошику
                   </button>
+                ) : item.availability === 'out_of_stock' ? (
+                  <button
+                    disabled
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border border-gray-300 px-3 sm:px-4 py-2 text-gray-500 text-xs sm:text-sm font-medium cursor-default"
+                  >
+                    Немає в наявності
+                  </button>
                 ) : (
                   <button
                     onClick={() => {
                       const price = getProductPrice(item);
-                      add({ id: item.id, title: item.title, image: item.image, price });
+                      add({ id: item.id, title: item.title, image: item.image, price, availability: item.availability });
                       markJustAdded(item.id);
                     }}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border border-primary px-3 sm:px-4 py-2 text-primary text-xs sm:text-sm font-medium transition-colors hover:bg-light-green/40"
+                    className={`flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors ${
+                      item.availability === 'limited' 
+                        ? 'border-orange-300 text-orange-600 hover:bg-orange-50' 
+                        : 'border-primary text-primary hover:bg-light-green/40'
+                    }`}
                   >
-                    До кошика
+                    {item.availability === 'limited' ? 'Обмежена наявність' : 'До кошика'}
                   </button>
                 )}
               </div>

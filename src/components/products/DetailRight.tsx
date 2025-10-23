@@ -61,6 +61,27 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           </span>
           <span className="text-sm font-medium uppercase tracking-wide text-white bg-accent rounded px-2 py-1 shadow-sm">за одиницю</span>
         </div>
+        {/* Індикатор наявності */}
+        <div className="mt-3">
+          {item.availability === 'in_stock' && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-green-100 text-green-800 text-sm font-medium px-3 py-1">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              В наявності
+            </span>
+          )}
+          {item.availability === 'limited' && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1">
+              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+              Обмежена наявність
+            </span>
+          )}
+          {item.availability === 'out_of_stock' && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-red-100 text-red-800 text-sm font-medium px-3 py-1">
+              <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+              Немає в наявності
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Теги характеристик */}
@@ -188,15 +209,26 @@ export default function DetailRight({ item }: { item: Cultivar }) {
             >
               ✓ В кошику
             </button>
+          ) : item.availability === 'out_of_stock' ? (
+            <button
+              disabled
+              className="flex-1 rounded-lg border-2 border-gray-300 bg-gray-100 px-6 py-3 text-gray-500 cursor-default font-medium shadow-sm text-lg"
+            >
+              Немає в наявності
+            </button>
           ) : (
             <button
               onClick={() => {
                 const price = getProductPrice(item);
-                add({ id: item.id, title: item.title, image: item.image, price });
+                add({ id: item.id, title: item.title, image: item.image, price, availability: item.availability });
               }}
-              className="flex-1 rounded-lg border-2 border-primary bg-white px-6 py-3 text-primary hover:bg-light-green/20 transition-all duration-200 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className={`flex-1 rounded-lg border-2 px-6 py-3 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
+                item.availability === 'limited'
+                  ? 'border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100 focus:ring-orange-500/50'
+                  : 'border-primary bg-white text-primary hover:bg-light-green/20 focus:ring-primary/50'
+              }`}
             >
-              Додати до кошика
+              {item.availability === 'limited' ? 'Обмежена наявність - Додати до кошика' : 'Додати до кошика'}
             </button>
           )}
         </div>

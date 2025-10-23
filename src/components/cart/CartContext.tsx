@@ -10,6 +10,7 @@ export type CartItem = {
   image: string;
   price: number;
   qty: number;
+  availability: 'in_stock' | 'out_of_stock' | 'limited';
 };
 
 type CartState = {
@@ -28,6 +29,11 @@ const initialState: CartState = { items: [] };
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "add": {
+      // Перевіряємо наявність товару перед додаванням
+      if (action.item.availability === 'out_of_stock') {
+        return state; // Не додаємо товар, якого немає в наявності
+      }
+      
       const qtyToAdd = action.qty ?? 1;
       const idx = state.items.findIndex((i) => i.id === action.item.id);
       if (idx >= 0) {
@@ -79,12 +85,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (raw) {
         const savedState = JSON.parse(raw) as CartState;
         if (savedState.items.length > 0) {
-          // Restore saved state with dynamic pricing
+          // Restore saved state with dynamic pricing and availability
           savedState.items.forEach(item => {
-            // Find the product in our database to get the current price
+            // Find the product in our database to get the current price and availability
             const product = cultivars.find(p => p.id === item.id);
             const price = product ? getProductPrice(product) : (item.price || 800);
-            dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image, price }, qty: item.qty });
+            const availability = product ? product.availability : 'in_stock';
+            
+            // Додаємо товар тільки якщо він є в наявності
+            if (availability !== 'out_of_stock') {
+              dispatch({ type: "add", item: { id: item.id, title: item.title, image: item.image, price, availability }, qty: item.qty });
+            }
           });
         }
       }

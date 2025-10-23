@@ -6,6 +6,7 @@ export type BasicProduct = {
   price: string;
   description: string;
   image: string;
+  availability: 'in_stock' | 'out_of_stock' | 'limited';
 };
 
 export type Cultivar = {
@@ -28,6 +29,7 @@ export type Cultivar = {
   };
   image: string; // Зображення
   price?: string; // Ціна за одиницю
+  availability: 'in_stock' | 'out_of_stock' | 'limited'; // Наявність
   // Optional extended fields
   tree?: string; // Дерево
   site?: string; // Вибір місця
@@ -68,6 +70,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/1.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 2,
@@ -92,6 +95,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/2.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
     tree:
       "середньоросле, широка округла крона, висота 3–3,5 м",
     site: "сонячна, захищена від вітру ділянка",
@@ -120,6 +124,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/3.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 4,
@@ -145,6 +150,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/4.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 5,
@@ -170,6 +176,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/5.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
     site: "сонячне, захищене від вітру",
     diseaseResistance: "висока",
   },
@@ -197,6 +204,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/6.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 7,
@@ -218,6 +226,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/7.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 8,
@@ -239,6 +248,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/8.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 9,
@@ -260,6 +270,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/9.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 10,
@@ -281,6 +292,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/10.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 11,
@@ -302,6 +314,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/11.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 12,
@@ -323,6 +336,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/12.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
     tree: "традиційний італійський сорт, ймовірно японського походження. В даний час є найбільш поширеним в Італії. Рослина сильноросла, з прямостоячим габітусом. Плоди після збору не їстівні (терпкі), середньо-великі (середня маса 250 г), з помаранчевою м'якоттю і відмінним солодким смаком. Сорт характеризується високою невибагливістю і стійкістю до низьких зимових температур в умовах Італії.",
   },
   {
@@ -345,6 +359,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/13.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
     tree: "це в'яжучий самоплідний сорт, характеризується пізнім терміном дозрівання, дуже великими округлими плодами. Сорт чудово підходить для споживання у свіжому вигляді та для сушіння, шкірка плодів спочатку жовта, далі стає яскраво-помаранчевою, а м'якуш після розм'якшення має сильний мускатний аромат та мармеладну консистенцію. У Європі він поширений переважно у Франції та Німеччині.",
   },
   {
@@ -367,6 +382,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/14.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 15,
@@ -388,6 +404,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/15.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 16,
@@ -409,6 +426,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/16.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 17,
@@ -430,6 +448,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/17.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 18,
@@ -451,6 +470,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/18.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 19,
@@ -472,6 +492,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/19.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 20,
@@ -493,6 +514,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/20.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 21,
@@ -514,6 +536,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/21.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 22,
@@ -535,6 +558,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/22.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 23,
@@ -556,6 +580,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/23.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 24,
@@ -577,6 +602,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/24.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
     tree: "Чудовий, японський сорт хурми. Дерево середньоросле, переважно росте вгору. Зимостійкість -20 градусів. У Японії вважається найхолодностійкішим сортом. І взагалі, Фуйю там найпопулярніший із нев'яжучих сортів. Плід оригінальної форми, плоский темнооранжевий, з малою кількістю або взагалі без насіння. Смак чудовий.",
   },
   {
@@ -599,6 +625,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/25.jpg",
     price: "800 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 26,
@@ -620,6 +647,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/26.jpg",
     price: "1000 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 27,
@@ -641,6 +669,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/27.jpg",
     price: "1200 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 28,
@@ -662,6 +691,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/28.jpg",
     price: "250 грн/шт",
+    availability: "out_of_stock",
     tree: "Це сорт персика раннього дозрівання американської селекції, створений в 1997 році. Вважається одним із найкращих сортів в американських садах.",
   },
   {
@@ -684,6 +714,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/29.jpg",
     price: "250 грн/шт",
+    availability: "out_of_stock",
   },
   {
     id: 30,
@@ -705,6 +736,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/30.webp",
     price: "250 грн/шт",
+    availability: "in_stock",
     tree: "Інжирний сорт персика з унікальною формою плодів, що нагадує інжир. Відрізняється особливою формою та смаковими якостями.",
   },
   {
@@ -727,6 +759,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/31.webp",
     price: "250 грн/шт",
+    availability: "out_of_stock",
     tree: "Ультра ранній сорт абрикоса, який дозріває на початку червня. Відрізняється гарним зовнішнім виглядом та відмінними смаковими якостями.",
   },
   {
@@ -749,6 +782,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/32.jpg",
     price: "250 грн/шт",
+    availability: "out_of_stock",
     tree: "Дуже ранній сорт абрикоса з великими плодами та яскравим червоним забарвленням. Відрізняється високою товарністю та відмінними смаковими якостями.",
   },
   {
@@ -771,6 +805,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/33.jpg",
     price: "250 грн/шт",
+    availability: "out_of_stock",
     tree: "Ранній сорт абрикоса з незвичайною подовжено-циліндричною формою плодів. Відрізняється великими розмірами та відмінними смаковими якостями.",
   },
   {
@@ -793,6 +828,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/34.webp",
     price: "250 грн/шт",
+    availability: "out_of_stock",
     tree: "Середній сорт абрикоса з пізнім цвітінням, що захищає його від весняних заморозків. Відрізняється високою транспортабельністю та лежкістю плодів.",
   },
   {
@@ -819,6 +855,7 @@ export const cultivars: Cultivar[] = [
     // Використано наявне зображення-плейсхолдер; можна замінити на власне фото інжиру
     image: "/products/35.jpg",
     price: "300 грн/шт",
+    availability: "in_stock",
   },
   // Копії продуктів з закритою кореневою системою та ціною 850 грн
   {
@@ -841,6 +878,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/5.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
     site: "сонячне, захищене від вітру",
     diseaseResistance: "висока",
   },
@@ -864,6 +902,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/6.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 38,
@@ -885,6 +924,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/7.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 39,
@@ -906,6 +946,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/14.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 40,
@@ -927,6 +968,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/13.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
     tree: "це в'яжучий самоплідний сорт, характеризується пізнім терміном дозрівання, дуже великими округлими плодами. Сорт чудово підходить для споживання у свіжому вигляді та для сушіння, шкірка плодів спочатку жовта, далі стає яскраво-помаранчевою, а м'якуш після розм'якшення має сильний мускатний аромат та мармеладну консистенцію. У Європі він поширений переважно у Франції та Німеччині.",
   },
   {
@@ -949,6 +991,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/12.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
     tree: "традиційний італійський сорт, ймовірно японського походження. В даний час є найбільш поширеним в Італії. Рослина сильноросла, з прямостоячим габітусом. Плоди після збору не їстівні (терпкі), середньо-великі (середня маса 250 г), з помаранчевою м'якоттю і відмінним солодким смаком. Сорт характеризується високою невибагливістю і стійкістю до низьких зимових температур в умовах Італії.",
   },
   {
@@ -971,6 +1014,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/11.jpg",
     price: "850 грн/шт",
+    availability: "in_stock",
   },
   {
     id: 43,
@@ -992,6 +1036,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/36.jpg",
     price: "350 грн/шт",
+    availability: "in_stock",
     tree: "Великоплідний, високоурожайний сорт шовковиці української селекції з раннім терміном дозрівання. Відрізняється великими розмірами плодів та високою морозостійкістю.",
   },
   {
@@ -1014,6 +1059,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/37.webp",
     price: "350 грн/шт",
+    availability: "in_stock",
     tree: "Популярний, самоплідний, крупноплідний сорт шовковиці з білими ягодами медового смаку. Відрізняється високою врожайністю та морозостійкістю.",
   },
 ];
