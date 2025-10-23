@@ -62,7 +62,12 @@ export default function CartPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h2 className="text-base sm:text-lg font-semibold text-secondary truncate">{item.title}</h2>
-                  <div className="mt-1 text-xs sm:text-sm text-gray-600">Ціна: <span className="font-medium text-secondary">{formatCurrency(item.price)}</span></div>
+                  <div className="mt-1 text-xs sm:text-sm text-gray-600">
+                    Ціна: <span className="font-medium text-secondary">{formatCurrency(item.price)}</span>
+                    {item.height && item.height !== "standard" && (
+                      <span className="ml-2 text-xs text-gray-500">({item.height})</span>
+                    )}
+                  </div>
                   <div className="mt-2 inline-flex items-center rounded-md border border-gray-300">
                     <button onClick={() => dec(item.id)} className="px-2 sm:px-3 py-1 hover:bg-gray-100 text-sm">-</button>
                     <span className="px-2 sm:px-4 text-sm">{item.qty}</span>

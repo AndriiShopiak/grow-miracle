@@ -57,11 +57,11 @@ export async function POST(request: NextRequest) {
     
     let totalItems = 0;
     let totalAmount = 0;
-    items.forEach((item: { id: number; title: string; qty: number; price?: number }, index: number) => {
+    items.forEach((item: { id: number; title: string; qty: number; price?: number; height?: string; priceLabel?: string }, index: number) => {
       // Знаходимо продукт в базі даних для отримання актуальної ціни та деталей
       const product = cultivars.find(p => p.id === item.id);
       const itemPrice = product ? getProductPrice(product) : item.price || 800;
-      const priceText = product?.price || `${itemPrice} грн/шт`;
+      const priceText = item.priceLabel || product?.price || `${itemPrice} грн/шт`;
       const itemSum = item.qty * itemPrice;
       
       message += `${index + 1}. ${item.title}`;
@@ -71,6 +71,12 @@ export async function POST(request: NextRequest) {
           message += ` [${product.rootSystem === 'open' ? 'ВКС' : 'ЗКС'}]`;
         }
       }
+      
+      // Додаємо інформацію про висоту саджанця, якщо є
+      if (item.height && item.height !== 'standard') {
+        message += `\n   📏 Висота: ${item.height}`;
+      }
+      
       message += ` — ${item.qty} шт. × ${priceText} = ${itemSum.toLocaleString('uk-UA')} грн\n`;
       totalItems += item.qty;
       totalAmount += itemSum;

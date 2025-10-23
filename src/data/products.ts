@@ -69,7 +69,7 @@ export const cultivars: Cultivar[] = [
         "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/1.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -94,7 +94,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "—",
     },
     image: "/products/2.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
     tree:
       "середньоросле, широка округла крона, висота 3–3,5 м",
@@ -149,7 +149,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2–4 рік після посадки.",
     },
     image: "/products/4.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -203,7 +203,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2–4 рік після посадки.",
     },
     image: "/products/6.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -313,7 +313,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/11.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -358,7 +358,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/13.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
     tree: "це в'яжучий самоплідний сорт, характеризується пізнім терміном дозрівання, дуже великими округлими плодами. Сорт чудово підходить для споживання у свіжому вигляді та для сушіння, шкірка плодів спочатку жовта, далі стає яскраво-помаранчевою, а м'якуш після розм'якшення має сильний мускатний аромат та мармеладну консистенцію. У Європі він поширений переважно у Франції та Німеччині.",
   },
@@ -381,7 +381,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/14.jpg",
-    price: "800 грн/шт",
+    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {

@@ -125,6 +125,63 @@ export function getProductPrice(product: Cultivar): number {
   return 800;
 }
 
+// Функція для отримання варіантів цін для продукту
+export function getProductPriceOptions(product: Cultivar): { height: string; price: number; label: string }[] {
+  if (!product.price) {
+    return [{ height: "standard", price: 800, label: "800 грн/шт" }];
+  }
+
+  // Перевіряємо чи є диференційовані ціни
+  const priceText = product.price;
+  
+  // Якщо є диференційовані ціни (формат: "600 грн/шт (1м) / 800 грн/шт (1,4м+)")
+  if (priceText.includes('/') && priceText.includes('м')) {
+    const prices = priceText.split('/').map(part => part.trim());
+    const options = [];
+    
+    for (const pricePart of prices) {
+      // Покращений регулярний вираз для парсингу
+      const priceMatch = pricePart.match(/(\d+)\s*грн.*?\(([^)]+)\)/);
+      if (priceMatch) {
+        const price = parseInt(priceMatch[1]);
+        const height = priceMatch[2];
+        options.push({
+          height: height,
+          price: price,
+          label: `${price} грн/шт (${height})`
+        });
+        } else {
+          // Спробуємо альтернативний парсинг для випадків без дужок
+          const simpleMatch = pricePart.match(/(\d+)\s*грн/);
+          if (simpleMatch) {
+            const price = parseInt(simpleMatch[1]);
+            // Визначаємо висоту на основі ціни
+            const height = price <= 600 ? '1м' : '1,4м+';
+            options.push({
+              height: height,
+              price: price,
+              label: `${price} грн/шт (${height})`
+            });
+          }
+        }
+    }
+    
+    return options.length > 0 ? options : [{ height: "standard", price: 800, label: "800 грн/шт" }];
+  }
+  
+  // Якщо звичайна ціна
+  const priceMatch = priceText.match(/\d+/);
+  const price = priceMatch ? parseInt(priceMatch[0]) : 800;
+  return [{ height: "standard", price: price, label: `${price} грн/шт` }];
+}
+
+// Функція для отримання ціни за висотою саджанця
+export function getProductPriceByHeight(product: Cultivar, height: string = "standard"): number {
+  const options = getProductPriceOptions(product);
+  const option = options.find(opt => opt.height === height);
+  return option ? option.price : options[0]?.price || 800;
+}
+
 // Функція для перевірки чи продукт належить до категорії
 export function isProductInCategory(product: Cultivar, category: string): boolean {
   if (category === 'all') return true;

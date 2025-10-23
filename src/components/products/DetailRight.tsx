@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartContext";
-import { useMemo, Suspense } from "react";
+import { useMemo, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Cultivar } from "@/data/products";
-import { getProductPrice } from "@/utils/productUtils";
+import { getProductPrice, getProductPriceOptions, getProductPriceByHeight } from "@/utils/productUtils";
+import HeightSelector from "../HeightSelector";
 
 function BackButton() {
   const searchParams = useSearchParams();
@@ -50,6 +51,9 @@ const shouldRenderField = (value: string | undefined): boolean => {
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
   const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
+  const [selectedHeight, setSelectedHeight] = useState<string>("standard");
+  const [currentPrice, setCurrentPrice] = useState<number>(getProductPrice(item));
+  const [priceLabel, setPriceLabel] = useState<string>(`${getProductPrice(item)} грн/шт`);
   return (
     <div className="space-y-6">
       {/* Заголовок та ціна */}
@@ -57,7 +61,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
         <h1 className="text-4xl font-bold text-secondary mb-4">{item.title}</h1>
         <div className="inline-flex items-center gap-2 rounded-xl bg-white/80 backdrop-blur-sm px-4 py-3 ring-2 ring-accent shadow-lg">
           <span className="text-3xl font-extrabold text-secondary">
-            {getProductPrice(item)} грн
+            {currentPrice} грн
           </span>
           <span className="text-sm font-medium uppercase tracking-wide text-white bg-accent rounded px-2 py-1 shadow-sm">за одиницю</span>
         </div>
@@ -81,6 +85,19 @@ export default function DetailRight({ item }: { item: Cultivar }) {
               Немає в наявності
             </span>
           )}
+        </div>
+        
+        {/* Селектор висоти саджанця */}
+        <div className="mt-4">
+          <HeightSelector
+            product={item}
+            selectedHeight={selectedHeight}
+            onHeightSelect={(height, price, label) => {
+              setSelectedHeight(height);
+              setCurrentPrice(price);
+              setPriceLabel(label);
+            }}
+          />
         </div>
       </div>
 
@@ -219,8 +236,15 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           ) : (
             <button
               onClick={() => {
-                const price = getProductPrice(item);
-                add({ id: item.id, title: item.title, image: item.image, price, availability: item.availability });
+                add({ 
+                  id: item.id, 
+                  title: item.title, 
+                  image: item.image, 
+                  price: currentPrice, 
+                  availability: item.availability,
+                  height: selectedHeight,
+                  priceLabel: priceLabel
+                });
               }}
               className={`flex-1 rounded-lg border-2 px-6 py-3 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
                 item.availability === 'limited'

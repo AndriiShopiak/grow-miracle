@@ -8,7 +8,8 @@ import { cultivars } from "@/data/products";
 import { useCart } from "@/components/cart/CartContext";
 import Pagination from "./Pagination";
 import ProductFilter, { FilterOptions } from "./ProductFilter";
-import { filterProducts, getProductPrice } from "@/utils/productUtils";
+import { filterProducts, getProductPrice, getProductPriceOptions } from "@/utils/productUtils";
+import HeightSelector from "./HeightSelector";
 
 function ProductGridWithSearchParams() {
   const { add, items } = useCart();
@@ -16,6 +17,7 @@ function ProductGridWithSearchParams() {
   const searchParams = useSearchParams();
   const itemIdsInCart = useMemo(() => new Set(items.map((i) => i.id)), [items]);
   const [justAddedIds, setJustAddedIds] = useState<Set<number>>(new Set());
+  const [selectedHeights, setSelectedHeights] = useState<Record<number, string>>({});
   
   const itemsPerPage = 9; // 3x3 grid
   
@@ -193,6 +195,14 @@ function ProductGridWithSearchParams() {
               {item.fruits}
             </p>
             <div className="mt-5">
+              {/* Селектор висоти саджанця */}
+              <HeightSelector
+                product={item}
+                selectedHeight={selectedHeights[item.id]}
+                onHeightSelect={(height) => {
+                  setSelectedHeights(prev => ({ ...prev, [item.id]: height }));
+                }}
+              />
               <div className="flex flex-col sm:flex-row gap-2">
                 <Link
                   href={`/products/${item.id}`}
@@ -217,8 +227,20 @@ function ProductGridWithSearchParams() {
                 ) : (
                   <button
                     onClick={() => {
-                      const price = getProductPrice(item);
-                      add({ id: item.id, title: item.title, image: item.image, price, availability: item.availability });
+                      const priceOptions = getProductPriceOptions(item);
+                      const selectedHeight = selectedHeights[item.id] || priceOptions[0]?.height || "standard";
+                      const price = priceOptions.find(opt => opt.height === selectedHeight)?.price || getProductPrice(item);
+                      const priceLabel = priceOptions.find(opt => opt.height === selectedHeight)?.label || `${price} грн/шт`;
+                      
+                      add({ 
+                        id: item.id, 
+                        title: item.title, 
+                        image: item.image, 
+                        price, 
+                        availability: item.availability,
+                        height: selectedHeight,
+                        priceLabel
+                      });
                       markJustAdded(item.id);
                     }}
                     className={`flex-1 sm:flex-none inline-flex items-center justify-center rounded-lg border px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors ${

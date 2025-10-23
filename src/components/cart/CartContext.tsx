@@ -11,6 +11,8 @@ export type CartItem = {
   price: number;
   qty: number;
   availability: 'in_stock' | 'out_of_stock' | 'limited';
+  height?: string; // Висота саджанця (наприклад, "1м", "1,4м+")
+  priceLabel?: string; // Повна мітка ціни (наприклад, "600 грн/шт (1м)")
 };
 
 type CartState = {
