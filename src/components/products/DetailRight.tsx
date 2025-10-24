@@ -5,7 +5,7 @@ import { useCart } from "@/components/cart/CartContext";
 import { useMemo, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Cultivar } from "@/data/products";
-import { getProductPrice, getProductPriceOptions, getProductPriceByHeight } from "@/utils/productUtils";
+import { getProductPrice } from "@/utils/productUtils";
 import HeightSelector from "../HeightSelector";
 
 function BackButton() {
