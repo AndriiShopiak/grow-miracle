@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import { cultivars } from '@/data/products';
-import { getProductPrice } from '@/utils/productUtils';
+import { getProductPrice, getProductPriceByHeight } from '@/utils/productUtils';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -60,8 +60,25 @@ export async function POST(request: NextRequest) {
     items.forEach((item: { id: number; title: string; qty: number; price?: number; height?: string; priceLabel?: string }, index: number) => {
       // Знаходимо продукт в базі даних для отримання актуальної ціни та деталей
       const product = cultivars.find(p => p.id === item.id);
-      const itemPrice = product ? getProductPrice(product) : item.price || 800;
-      const priceText = item.priceLabel || product?.price || `${itemPrice} грн/шт`;
+      
+      // Використовуємо правильну ціну на основі висоти саджанця
+      let itemPrice: number;
+      let priceText: string;
+      
+      if (product && item.height) {
+        // Якщо є висота саджанця, використовуємо getProductPriceByHeight
+        itemPrice = getProductPriceByHeight(product, item.height);
+        priceText = item.priceLabel || `${itemPrice} грн/шт (${item.height})`;
+      } else if (product) {
+        // Якщо немає висоти, використовуємо стандартну ціну
+        itemPrice = getProductPrice(product);
+        priceText = item.priceLabel || product?.price || `${itemPrice} грн/шт`;
+      } else {
+        // Fallback на ціну з корзини або стандартну
+        itemPrice = item.price || 800;
+        priceText = item.priceLabel || `${itemPrice} грн/шт`;
+      }
+      
       const itemSum = item.qty * itemPrice;
       
       message += `${index + 1}. ${item.title}`;
