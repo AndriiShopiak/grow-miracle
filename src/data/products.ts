@@ -69,7 +69,7 @@ export const cultivars: Cultivar[] = [
         "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/1.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -94,7 +94,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "—",
     },
     image: "/products/2.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
     tree:
       "середньоросле, широка округла крона, висота 3–3,5 м",
@@ -123,7 +123,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "ранній вступ у плодоношення",
     },
     image: "/products/3.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -149,7 +149,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2–4 рік після посадки.",
     },
     image: "/products/4.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -175,7 +175,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "—",
     },
     image: "/products/5.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
     site: "сонячне, захищене від вітру",
     diseaseResistance: "висока",
@@ -203,7 +203,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2–4 рік після посадки.",
     },
     image: "/products/6.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -225,7 +225,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/7.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -247,7 +247,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/8.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -269,7 +269,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/9.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -291,7 +291,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/10.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -313,7 +313,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/11.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -335,7 +335,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/12.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
     tree: "традиційний італійський сорт, ймовірно японського походження. В даний час є найбільш поширеним в Італії. Рослина сильноросла, з прямостоячим габітусом. Плоди після збору не їстівні (терпкі), середньо-великі (середня маса 250 г), з помаранчевою м'якоттю і відмінним солодким смаком. Сорт характеризується високою невибагливістю і стійкістю до низьких зимових температур в умовах Італії.",
   },
@@ -358,7 +358,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/13.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
     tree: "це в'яжучий самоплідний сорт, характеризується пізнім терміном дозрівання, дуже великими округлими плодами. Сорт чудово підходить для споживання у свіжому вигляді та для сушіння, шкірка плодів спочатку жовта, далі стає яскраво-помаранчевою, а м'якуш після розм'якшення має сильний мускатний аромат та мармеладну консистенцію. У Європі він поширений переважно у Франції та Німеччині.",
   },
@@ -381,7 +381,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/14.jpg",
-    price: "600 грн/шт (1м) / 800 грн/шт (1,4м+)",
+    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
     availability: "in_stock",
   },
   {
@@ -403,7 +403,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/15.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -425,7 +425,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/16.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -447,7 +447,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/17.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -469,7 +469,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/18.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -491,7 +491,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/19.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -513,7 +513,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/20.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -535,7 +535,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/21.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -557,7 +557,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/22.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -579,7 +579,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/23.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
@@ -601,7 +601,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/24.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
     tree: "Чудовий, японський сорт хурми. Дерево середньоросле, переважно росте вгору. Зимостійкість -20 градусів. У Японії вважається найхолодностійкішим сортом. І взагалі, Фуйю там найпопулярніший із нев'яжучих сортів. Плід оригінальної форми, плоский темнооранжевий, з малою кількістю або взагалі без насіння. Смак чудовий.",
   },
@@ -624,7 +624,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/25.jpg",
-    price: "800 грн/шт",
+    price: "900 грн/шт",
     availability: "in_stock",
   },
   {
