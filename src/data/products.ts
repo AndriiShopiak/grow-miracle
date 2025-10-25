@@ -878,7 +878,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/5.jpg",
     price: "850 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
     site: "сонячне, захищене від вітру",
     diseaseResistance: "висока",
   },
@@ -924,7 +924,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/7.jpg",
     price: "850 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 39,
@@ -946,7 +946,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/14.jpg",
     price: "850 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 40,
@@ -991,7 +991,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/12.jpg",
     price: "850 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree: "традиційний італійський сорт, ймовірно японського походження. В даний час є найбільш поширеним в Італії. Рослина сильноросла, з прямостоячим габітусом. Плоди після збору не їстівні (терпкі), середньо-великі (середня маса 250 г), з помаранчевою м'якоттю і відмінним солодким смаком. Сорт характеризується високою невибагливістю і стійкістю до низьких зимових температур в умовах Італії.",
   },
   {
@@ -1014,7 +1014,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/11.jpg",
     price: "850 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 43,
