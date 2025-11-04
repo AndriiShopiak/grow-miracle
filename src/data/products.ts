@@ -492,7 +492,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/19.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 20,
@@ -602,7 +602,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/24.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree: "Чудовий, японський сорт хурми. Дерево середньоросле, переважно росте вгору. Зимостійкість -20 градусів. У Японії вважається найхолодностійкішим сортом. І взагалі, Фуйю там найпопулярніший із нев'яжучих сортів. Плід оригінальної форми, плоский темнооранжевий, з малою кількістю або взагалі без насіння. Смак чудовий.",
   },
   {
