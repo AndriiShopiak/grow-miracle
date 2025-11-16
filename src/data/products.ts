@@ -95,7 +95,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/2.jpg",
     price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree:
       "середньоросле, широка округла крона, висота 3–3,5 м",
     site: "сонячна, захищена від вітру ділянка",
