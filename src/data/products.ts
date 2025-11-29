@@ -292,7 +292,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/10.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 11,
@@ -314,7 +314,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/11.jpg",
     price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 12,
@@ -669,7 +669,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/27.jpg",
     price: "1200 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 28,
