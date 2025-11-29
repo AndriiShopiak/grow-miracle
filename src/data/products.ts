@@ -514,7 +514,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/20.jpg",
     price: "900 грн/шт",
-    availability: "out_of_stock",
+    availability: "in_stock",
   },
   {
     id: 21,
