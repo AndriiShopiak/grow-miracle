@@ -5,20 +5,20 @@ import { useCart } from "@/components/cart/CartContext";
 import { useMemo, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Cultivar } from "@/data/products";
-import { getProductPrice } from "@/utils/productUtils";
+import { getProductPrice, getProductPriceOptions } from "@/utils/productUtils";
 import HeightSelector from "../HeightSelector";
 
 function BackButton() {
   const searchParams = useSearchParams();
-  
+
   // Build back URL with current filters and pagination
   const buildBackUrl = () => {
     const params = new URLSearchParams();
-    
+
     const rootSystem = searchParams.get('rootSystem');
     const category = searchParams.get('category');
     const page = searchParams.get('page');
-    
+
     if (rootSystem && rootSystem !== 'all') {
       params.set('rootSystem', rootSystem);
     }
@@ -28,13 +28,13 @@ function BackButton() {
     if (page && page !== '1') {
       params.set('page', page);
     }
-    
+
     const queryString = params.toString();
     return queryString ? `/?${queryString}#products` : '/#products';
   };
 
   return (
-    <Link 
+    <Link
       href={buildBackUrl()}
       className="flex-1 rounded-lg bg-primary px-6 py-3 text-white hover:bg-secondary transition-all duration-200 text-center font-medium shadow-sm hover:shadow-md text-lg"
     >
@@ -51,9 +51,15 @@ const shouldRenderField = (value: string | undefined): boolean => {
 export default function DetailRight({ item }: { item: Cultivar }) {
   const { add, items } = useCart();
   const isInCart = useMemo(() => items.some((i) => i.id === item.id), [items, item.id]);
-  const [selectedHeight, setSelectedHeight] = useState<string>("standard");
-  const [currentPrice, setCurrentPrice] = useState<number>(getProductPrice(item));
-  const [priceLabel, setPriceLabel] = useState<string>(`${getProductPrice(item)} грн/шт`);
+
+  // Визначаємо початкові значення на основі доступних опцій
+  const priceOptions = useMemo(() => getProductPriceOptions(item), [item]);
+  const firstAvailable = priceOptions.find(opt => opt.available);
+  const initialOption = firstAvailable || priceOptions[0];
+
+  const [selectedHeight, setSelectedHeight] = useState<string>(initialOption.height);
+  const [currentPrice, setCurrentPrice] = useState<number>(initialOption.price);
+  const [priceLabel, setPriceLabel] = useState<string>(initialOption.label);
   return (
     <div className="space-y-6">
       {/* Заголовок та ціна */}
@@ -86,7 +92,7 @@ export default function DetailRight({ item }: { item: Cultivar }) {
             </span>
           )}
         </div>
-        
+
         {/* Селектор висоти саджанця */}
         <div className="mt-4">
           <HeightSelector
@@ -110,11 +116,10 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           <span className="inline-flex items-center rounded-lg bg-accent/20 text-secondary text-base font-medium px-4 py-2 shadow-sm border border-accent/30">
             Дозрівання: {item.ripeningTerm}
           </span>
-          <span className={`inline-flex items-center rounded-full text-base font-medium px-4 py-2 shadow-sm ${
-            item.rootSystem === 'open' 
-              ? 'bg-green-100 text-green-800 border border-green-200' 
+          <span className={`inline-flex items-center rounded-full text-base font-medium px-4 py-2 shadow-sm ${item.rootSystem === 'open'
+              ? 'bg-green-100 text-green-800 border border-green-200'
               : 'bg-blue-100 text-blue-800 border border-blue-200'
-          }`}>
+            }`}>
             {item.rootSystem === 'open' ? 'Відкрита коренева система' : 'Закрита коренева система'}
           </span>
         </div>
@@ -139,42 +144,42 @@ export default function DetailRight({ item }: { item: Cultivar }) {
             Характеристики
           </h3>
           <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {shouldRenderField(item.taste) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Смак</dt>
-              <dd className="text-gray-800 text-base">{item.taste}</dd>
-            </div>
-          )}
-          {shouldRenderField(item.selfFertility) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Самоплідність</dt>
-              <dd className="text-gray-800 text-base">{item.selfFertility}</dd>
-            </div>
-          )}
-          {shouldRenderField(item.yield) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Врожайність</dt>
-              <dd className="text-gray-800 text-base">{item.yield}</dd>
-            </div>
-          )}
-          {shouldRenderField(item.frostResistance) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Морозостійкість</dt>
-              <dd className="text-gray-800 text-base">{item.frostResistance}</dd>
-            </div>
-          )}
-          {shouldRenderField(item.rootstock) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Підщепа</dt>
-              <dd className="text-gray-800 text-base">{item.rootstock}</dd>
-            </div>
-          )}
-          {shouldRenderField(item.height) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
-              <dt className="font-semibold text-blue-800 text-base mb-1">Висота саджанця</dt>
-              <dd className="text-gray-800 text-base">{item.height}</dd>
-            </div>
-          )}
+            {shouldRenderField(item.taste) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Смак</dt>
+                <dd className="text-gray-800 text-base">{item.taste}</dd>
+              </div>
+            )}
+            {shouldRenderField(item.selfFertility) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Самоплідність</dt>
+                <dd className="text-gray-800 text-base">{item.selfFertility}</dd>
+              </div>
+            )}
+            {shouldRenderField(item.yield) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Врожайність</dt>
+                <dd className="text-gray-800 text-base">{item.yield}</dd>
+              </div>
+            )}
+            {shouldRenderField(item.frostResistance) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Морозостійкість</dt>
+                <dd className="text-gray-800 text-base">{item.frostResistance}</dd>
+              </div>
+            )}
+            {shouldRenderField(item.rootstock) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Підщепа</dt>
+                <dd className="text-gray-800 text-base">{item.rootstock}</dd>
+              </div>
+            )}
+            {shouldRenderField(item.height) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-blue-100/50">
+                <dt className="font-semibold text-blue-800 text-base mb-1">Висота саджанця</dt>
+                <dd className="text-gray-800 text-base">{item.height}</dd>
+              </div>
+            )}
           </dl>
         </div>
       )}
@@ -187,24 +192,24 @@ export default function DetailRight({ item }: { item: Cultivar }) {
             Особливості вирощування
           </h3>
           <div className="space-y-3">
-          {shouldRenderField(item.cultivation.planting) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-              <span className="font-semibold text-green-800 text-base">Посадка:</span>
-              <p className="text-gray-800 text-base mt-1">{item.cultivation.planting}</p>
-            </div>
-          )}
-          {shouldRenderField(item.cultivation.care) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-              <span className="font-semibold text-green-800 text-base">Догляд:</span>
-              <p className="text-gray-800 text-base mt-1">{item.cultivation.care}</p>
-            </div>
-          )}
-          {shouldRenderField(item.cultivation.bearingPeriod) && (
-            <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
-              <span className="font-semibold text-green-800 text-base">Період плодоношення:</span>
-              <p className="text-gray-800 text-base mt-1">{item.cultivation.bearingPeriod}</p>
-            </div>
-          )}
+            {shouldRenderField(item.cultivation.planting) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+                <span className="font-semibold text-green-800 text-base">Посадка:</span>
+                <p className="text-gray-800 text-base mt-1">{item.cultivation.planting}</p>
+              </div>
+            )}
+            {shouldRenderField(item.cultivation.care) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+                <span className="font-semibold text-green-800 text-base">Догляд:</span>
+                <p className="text-gray-800 text-base mt-1">{item.cultivation.care}</p>
+              </div>
+            )}
+            {shouldRenderField(item.cultivation.bearingPeriod) && (
+              <div className="bg-white/70 rounded-lg p-3 border border-green-100/50">
+                <span className="font-semibold text-green-800 text-base">Період плодоношення:</span>
+                <p className="text-gray-800 text-base mt-1">{item.cultivation.bearingPeriod}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -236,21 +241,20 @@ export default function DetailRight({ item }: { item: Cultivar }) {
           ) : (
             <button
               onClick={() => {
-                add({ 
-                  id: item.id, 
-                  title: item.title, 
-                  image: item.image, 
-                  price: currentPrice, 
+                add({
+                  id: item.id,
+                  title: item.title,
+                  image: item.image,
+                  price: currentPrice,
                   availability: item.availability,
                   height: selectedHeight,
                   priceLabel: priceLabel
                 });
               }}
-              className={`flex-1 rounded-lg border-2 px-6 py-3 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 transition-all duration-200 ${
-                item.availability === 'limited'
+              className={`flex-1 rounded-lg border-2 px-6 py-3 font-medium shadow-sm hover:shadow-md text-lg focus:outline-none focus:ring-2 transition-all duration-200 ${item.availability === 'limited'
                   ? 'border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100 focus:ring-orange-500/50'
                   : 'border-primary bg-white text-primary hover:bg-light-green/20 focus:ring-primary/50'
-              }`}
+                }`}
             >
               {item.availability === 'limited' ? 'Обмежена наявність - Додати до кошика' : 'Додати до кошика'}
             </button>
