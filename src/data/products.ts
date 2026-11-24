@@ -69,7 +69,7 @@ export const cultivars: Cultivar[] = [
         "Плодоношення починається на 2-4 рік після посадки.",
     },
     image: "/products/1.jpg",
-    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
+    price: "750 грн/шт (1,2м)",
     availability: "in_stock",
   },
   {
@@ -94,8 +94,8 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "—",
     },
     image: "/products/2.jpg",
-    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
-    availability: "out_of_stock",
+    price: "750 грн/шт (1,2м)",
+    availability: "in_stock",
     tree:
       "середньоросле, широка округла крона, висота 3–3,5 м",
     site: "сонячна, захищена від вітру ділянка",
@@ -150,7 +150,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/4.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 5,
@@ -203,7 +203,7 @@ export const cultivars: Cultivar[] = [
       bearingPeriod: "Плодоношення починається на 2–4 рік після посадки.",
     },
     image: "/products/6.jpg",
-    price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
+    price: "750 грн/шт (1,2м)",
     availability: "in_stock",
   },
   {
@@ -226,7 +226,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/7.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 8,
@@ -270,7 +270,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/9.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 10,
@@ -359,7 +359,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/13.jpg",
     price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree: "це в'яжучий самоплідний сорт, характеризується пізнім терміном дозрівання, дуже великими округлими плодами. Сорт чудово підходить для споживання у свіжому вигляді та для сушіння, шкірка плодів спочатку жовта, далі стає яскраво-помаранчевою, а м'якуш після розм'якшення має сильний мускатний аромат та мармеладну консистенцію. У Європі він поширений переважно у Франції та Німеччині.",
   },
   {
@@ -382,7 +382,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/14.jpg",
     price: "700 грн/шт (1м) / 900 грн/шт (1,4м+)",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 15,
@@ -404,7 +404,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/15.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 16,
@@ -426,7 +426,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/16.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 17,
@@ -448,7 +448,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/17.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 18,
@@ -470,7 +470,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/18.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 19,
@@ -514,7 +514,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/20.jpg",
     price: "700 грн/шт (1м) / !900 грн/шт (1,4м+)",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 21,
@@ -536,7 +536,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/21.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 22,
@@ -558,7 +558,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/22.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 23,
@@ -625,7 +625,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/25.jpg",
     price: "900 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
   },
   {
     id: 26,
@@ -736,7 +736,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/30.webp",
     price: "250 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree: "Інжирний сорт персика з унікальною формою плодів, що нагадує інжир. Відрізняється особливою формою та смаковими якостями.",
   },
   {
@@ -1036,7 +1036,7 @@ export const cultivars: Cultivar[] = [
     },
     image: "/products/36.jpg",
     price: "350 грн/шт",
-    availability: "in_stock",
+    availability: "out_of_stock",
     tree: "Великоплідний, високоурожайний сорт шовковиці української селекції з раннім терміном дозрівання. Відрізняється великими розмірами плодів та високою морозостійкістю.",
   },
   {
