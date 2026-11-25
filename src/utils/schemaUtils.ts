@@ -71,7 +71,7 @@ export function generateLocalBusinessSchema(baseUrl: string = 'https://sad-olega
     "name": "Хурмовий сад",
     "description": "Вирощування саджанців плодових і екзотичних культур: хурма, азіміна, інжир, гранат, ківі. Доставка по всій Україні.",
     "url": baseUrl,
-    "logo": `${baseUrl}/logo/garden_logo.jpg`,
+    "logo": `${baseUrl}/logo/khurmovyi_sad_icon.jpg`,
     "image": `${baseUrl}/products/18.jpg`,
     "telephone": "+380685249382",
     "address": {

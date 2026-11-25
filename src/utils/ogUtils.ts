@@ -6,7 +6,7 @@ export const baseOGTags = {
   locale: 'uk_UA',
   type: 'website' as const,
   url: 'https://sad-olega.com',
-  image: 'https://sad-olega.com/products/18.jpg', // Красиве фото з головної
+  image: 'https://sad-olega.com/logo/khurmovyi_sad_og.jpg', // Логотип Хурмовий сад
   imageAlt: 'Хурмовий сад - саджанці плодових культур',
   description: 'Вирощування саджанців плодових і екзотичних культур: хурма, азіміна, інжир, гранат, ківі. Доставка по всій Україні.',
 };

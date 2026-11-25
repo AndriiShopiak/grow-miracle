@@ -50,11 +50,10 @@ export const metadata: Metadata = {
   robots: "index, follow",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.ico', type: 'image/x-icon' }
+      { url: '/logo/favicon-32.png', sizes: '32x32', type: 'image/png' }
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    shortcut: '/logo/favicon-32.png',
+    apple: '/logo/apple-touch-icon.png',
   },
   alternates: {
     canonical: "https://sad-olega.com/",
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
       {
         url: homeOGTags.image,
         width: 1200,
-        height: 630,
+        height: 800,
         alt: homeOGTags.imageAlt,
       },
     ],

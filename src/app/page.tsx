@@ -29,7 +29,7 @@ export default function Home() {
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
                 <Image
-                  src="/logo/garden_logo.jpg"
+                  src="/logo/khurmovyi_sad_icon.jpg"
                   alt="Логотип Хурмового саду"
                   width={64}
                   height={64}
@@ -339,18 +339,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {/* Про компанію */}
             <div>
-            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
+              <h4 className="sr-only">Хурмовий сад</h4>
+              <div className="w-full max-w-[280px] rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/logo/garden_logo.jpg"
-                  alt="Логотип Хурмового саду"
-                  width={64}
-                  height={64}
-                  className="object-cover"
+                  src="/logo/khurmovyi_sad_full.webp"
+                  alt="Логотип Хурмовий сад — Вирощуємо майбутній урожай разом"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto"
                   quality={85}
-                  sizes="(max-width: 640px) 48px, 64px"
+                  sizes="280px"
                 />
               </div>
-              <h4 className="text-xl font-bold mb-4">Хурмовий сад</h4>
             </div>
 
             {/* Швидкі посилання */}
