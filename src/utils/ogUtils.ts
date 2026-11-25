@@ -2,19 +2,19 @@ import { Cultivar } from '@/data/products';
 
 // Базові Open Graph теги для сайту
 export const baseOGTags = {
-  siteName: 'Сад Олега',
+  siteName: 'Хурмовий сад',
   locale: 'uk_UA',
   type: 'website' as const,
   url: 'https://sad-olega.com',
   image: 'https://sad-olega.com/products/18.jpg', // Красиве фото з головної
-  imageAlt: 'Сад Олега - саджанці плодових культур',
+  imageAlt: 'Хурмовий сад - саджанці плодових культур',
   description: 'Вирощування саджанців плодових і екзотичних культур: хурма, азіміна, інжир, гранат, ківі. Доставка по всій Україні.',
 };
 
 // Генерація Open Graph тегів для головної сторінки
 export function generateHomeOGTags() {
   return {
-    title: 'Сад Олега - Тут росте диво | Саджанці плодових культур',
+    title: 'Хурмовий сад - Вирощуємо майбутній урожай разом | Саджанці плодових культур',
     description: '🌱 Саджанці хурми, персика, абрикоса, інжиру з Закарпаття. Високоякісні сорти з відкритою та закритою кореневою системою. Доставка по всій Україні. ☎️ +380 68 524 93 82',
     image: baseOGTags.image,
     imageAlt: baseOGTags.imageAlt,
@@ -27,7 +27,7 @@ export function generateHomeOGTags() {
 
 // Генерація Open Graph тегів для продукту
 export function generateProductOGTags(product: Cultivar) {
-  const title = `${product.title} - ${product.species} | Сад Олега`;
+  const title = `${product.title} - ${product.species} | Хурмовий сад`;
   const price = product.price || '800 грн/шт';
   const description = `🌱 ${product.species} "${product.title}". ${product.taste}. ${product.frostResistance}. Ціна: ${price}. Доставка по Україні. ☎️ +380 68 524 93 82`;
   
@@ -46,7 +46,7 @@ export function generateProductOGTags(product: Cultivar) {
       currency: 'UAH',
       availability: 'in stock',
       condition: 'new',
-      brand: 'Сад Олега',
+      brand: 'Хурмовий сад',
     },
   };
 }
@@ -54,10 +54,10 @@ export function generateProductOGTags(product: Cultivar) {
 // Генерація Open Graph тегів для галереї
 export function generateGalleryOGTags() {
   return {
-    title: 'Галерея саду | Сад Олега - Фото нашого господарства',
+    title: 'Галерея саду | Хурмовий сад - Фото нашого господарства',
     description: '📸 Фото з нашого саду та господарства в Закарпатті. Подивіться, як ми вирощуємо саджанці плодових культур. Високоякісні сорти хурми, персика, абрикоса.',
     image: 'https://sad-olega.com/gallery/15.jpg', // Красиве фото з галереї
-    imageAlt: 'Галерея саду - Сад Олега',
+    imageAlt: 'Галерея саду - Хурмовий сад',
     url: 'https://sad-olega.com/gallery',
     type: baseOGTags.type,
     siteName: baseOGTags.siteName,
@@ -68,10 +68,10 @@ export function generateGalleryOGTags() {
 // Генерація Open Graph тегів для кошика
 export function generateCartOGTags() {
   return {
-    title: 'Кошик | Сад Олега - Оформлення замовлення',
+    title: 'Кошик | Хурмовий сад - Оформлення замовлення',
     description: 'Оформіть замовлення саджанців плодових культур. Доставка по всій Україні.',
     image: baseOGTags.image,
-    imageAlt: 'Кошик - Сад Олега',
+    imageAlt: 'Кошик - Хурмовий сад',
     url: 'https://sad-olega.com/cart',
     type: baseOGTags.type,
     siteName: baseOGTags.siteName,

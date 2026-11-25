@@ -30,7 +30,7 @@ export default function Home() {
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
                 <Image
                   src="/logo/garden_logo.jpg"
-                  alt="Логотип Сад Олега"
+                  alt="Логотип Хурмового саду"
                   width={64}
                   height={64}
                   className="object-cover"
@@ -40,8 +40,8 @@ export default function Home() {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-lg sm:text-2xl font-bold text-white truncate">Сад Олега</h1>
-                <p className="text-white text-xs sm:text-sm truncate">Тут росте диво</p>
+                <h1 className="text-lg sm:text-2xl font-bold text-white truncate">Хурмовий сад</h1>
+                <p className="text-white text-xs sm:text-sm truncate">Вирощуємо майбутній урожай разом</p>
               </div>
             </div>
             
@@ -138,7 +138,7 @@ export default function Home() {
             {/* Декоративна лінія зверху */}
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
-              Сад Олега — тут росте диво
+              Хурмовий сад — вирощуємо майбутній урожай разом
             </h2>
             
             <div className="max-w-3xl mx-auto">
@@ -155,7 +155,7 @@ export default function Home() {
                 щоб кожен садівник міг обрати зручний варіант.
               </p>
               <p className="text-lg md:text-xl text-white/90 mt-4 italic">
-                У &quot;Саді Олега&quot; ми створюємо не просто посадковий матеріал — 
+                У &quot;Хурмовому саду&quot; ми створюємо не просто посадковий матеріал — 
                 <span className="text-accent font-medium"> ми допомагаємо вирощувати життя, красу і врожай</span>.
               </p>
             </div>
@@ -230,7 +230,7 @@ export default function Home() {
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
                 <h3 className="text-3xl font-bold text-secondary mb-6">Про нас</h3>
                 <p className="text-lg md:text-xl text-secondary leading-relaxed mb-5">
-                  Сад Олега — це сімейна справа, народжена з любові до природи й землі.
+                  Хурмовий сад — це сімейна справа, народжена з любові до природи й землі.
                   Ми почали з кількох саджанців хурми у власному дворі, а сьогодні вирощуємо десятки сортів плодових і екзотичних дерев, 
                   серед яких <span className="text-accent font-medium">азіміна, інжир, гранат, ківі</span> та багато інших.
                 </p>
@@ -342,7 +342,7 @@ export default function Home() {
             <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
                 <Image
                   src="/logo/garden_logo.jpg"
-                  alt="Логотип Сад Олега"
+                  alt="Логотип Хурмового саду"
                   width={64}
                   height={64}
                   className="object-cover"
@@ -350,7 +350,7 @@ export default function Home() {
                   sizes="(max-width: 640px) 48px, 64px"
                 />
               </div>
-              <h4 className="text-xl font-bold mb-4">Сад Олега</h4>
+              <h4 className="text-xl font-bold mb-4">Хурмовий сад</h4>
             </div>
 
             {/* Швидкі посилання */}
@@ -402,7 +402,7 @@ export default function Home() {
 
           <div className="border-t border-white/20 pt-8 text-center">
             <p className="text-white/80">
-              &copy; {new Date().getFullYear()} Сад Олега - Тут росте диво. Всі права захищені.
+              &copy; {new Date().getFullYear()} Хурмовий сад - Вирощуємо майбутній урожай разом. Всі права захищені.
             </p>
           </div>
         </div>

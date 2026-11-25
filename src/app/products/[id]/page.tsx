@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: "Товар не знайдено | Сад Олега",
+      title: "Товар не знайдено | Хурмовий сад",
       description: "Запитаний товар не знайдено.",
       alternates: {
         canonical: "https://sad-olega.com/",

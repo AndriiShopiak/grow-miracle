@@ -14,7 +14,7 @@ export function generateProductSchema(product: Cultivar, baseUrl: string = 'http
     "image": `${baseUrl}${product.image}`,
     "brand": {
       "@type": "Brand",
-      "name": "Сад Олега"
+      "name": "Хурмовий сад"
     },
     "category": product.species,
     "offers": {
@@ -24,7 +24,7 @@ export function generateProductSchema(product: Cultivar, baseUrl: string = 'http
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "Сад Олега"
+        "name": "Хурмовий сад"
       }
     },
     "additionalProperty": [
@@ -68,7 +68,7 @@ export function generateLocalBusinessSchema(baseUrl: string = 'https://sad-olega
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#business`,
-    "name": "Сад Олега",
+    "name": "Хурмовий сад",
     "description": "Вирощування саджанців плодових і екзотичних культур: хурма, азіміна, інжир, гранат, ківі. Доставка по всій Україні.",
     "url": baseUrl,
     "logo": `${baseUrl}/logo/garden_logo.jpg`,
@@ -147,7 +147,7 @@ export function generateWebSiteSchema(baseUrl: string = 'https://sad-olega.com')
     "@type": "WebSite",
     "@id": `${baseUrl}/#website`,
     "url": baseUrl,
-    "name": "Сад Олега - Тут росте диво",
+    "name": "Хурмовий сад - Вирощуємо майбутній урожай разом",
     "description": "Свіжі овочі та фрукти з власного саду. Натуральні продукти для вашої родини.",
     "publisher": {
       "@id": `${baseUrl}/#business`
@@ -168,7 +168,7 @@ export function generateImageGallerySchema(baseUrl: string = 'https://sad-olega.
   const images = Array.from({ length: 41 }, (_, i) => ({
     "@type": "ImageObject",
     "url": `${baseUrl}/gallery/${i + 1}.jpg`,
-    "name": `Сад Олега - фото ${i + 1}`,
+    "name": `Хурмовий сад - фото ${i + 1}`,
     "description": "Фото з нашого саду та господарства"
   }));
 

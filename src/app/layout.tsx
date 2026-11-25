@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   title: homeOGTags.title,
   description: homeOGTags.description,
   keywords: "саджанці хурми, саджанці персика, саджанці абрикоса, саджанці інжиру, сад Закарпаття, доставка саджанців, купити саджанці, плодові дерева, екзотичні рослини, хурма сорти, персик сорти, абрикос сорти",
-  authors: [{ name: "Сад Олега" }],
-  creator: "Сад Олега",
-  publisher: "Сад Олега",
+  authors: [{ name: "Хурмовий сад" }],
+  creator: "Хурмовий сад",
+  publisher: "Хурмовий сад",
   robots: "index, follow",
   icons: {
     icon: [

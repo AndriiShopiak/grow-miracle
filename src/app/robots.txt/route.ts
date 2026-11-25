@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const robotsTxt = `# Robots.txt для сайту "Сад Олега"
+  const robotsTxt = `# Robots.txt для сайту "Хурмовий сад"
 # https://sad-olega.com
 
 # Дозволити всім пошуковим роботам сканувати сайт

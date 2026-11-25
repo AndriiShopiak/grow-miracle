@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Формуємо повідомлення для Telegram
-    let message = `🛒 *Нове замовлення з сайту Сад Олега*\n\n`;
+    let message = `🛒 *Нове замовлення з сайту Хурмовий сад*\n\n`;
     
     // Інформація про клієнта
     message += `👤 *Клієнт:*\n`;

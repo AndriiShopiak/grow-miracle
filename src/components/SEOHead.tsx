@@ -31,7 +31,7 @@ export default function SEOHead({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Сад Олега" />
+      <meta property="og:site_name" content="Хурмовий сад" />
       <meta property="og:locale" content="uk_UA" />
       {ogImage && <meta property="og:image" content={ogImage} />}
       {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
@@ -46,7 +46,7 @@ export default function SEOHead({
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
       
       {/* Additional SEO */}
-      <meta name="author" content="Сад Олега" />
+      <meta name="author" content="Хурмовий сад" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
     </Head>

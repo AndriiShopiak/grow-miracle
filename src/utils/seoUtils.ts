@@ -75,7 +75,7 @@ export function createProductMetadata(
       description,
       url: canonicalUrl,
       type: "website",
-      siteName: "Сад Олега",
+      siteName: "Хурмовий сад",
       locale: "uk_UA",
     },
     twitter: {
@@ -86,7 +86,7 @@ export function createProductMetadata(
     other: {
       "product:id": productId.toString(),
       "product:category": "саджанці",
-      "product:brand": "Сад Олега",
+      "product:brand": "Хурмовий сад",
     },
     ...additionalMeta,
   };
