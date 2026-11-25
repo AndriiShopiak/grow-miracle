@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Merriweather, Geist_Mono, Source_Sans_3, Kalam } from "next/font/google";
+import { Manrope, Merriweather, Geist_Mono, Source_Sans_3, Kalam, Nunito } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import CartLink from "@/components/cart/CartLink";
@@ -29,6 +29,15 @@ const kalam = Kalam({
   variable: "--font-handwriting",
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "700"],
+  display: "swap",
+});
+
+// Шрифт логотипу "Хурмовий сад" (заокруглений, з кирилицею)
+const nunito = Nunito({
+  variable: "--font-logo",
+  subsets: ["latin", "cyrillic"],
+  weight: ["700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -111,7 +120,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${manrope.variable} ${merriweather.variable} ${sourceSans.variable} ${kalam.variable} ${geistMono.variable} antialiased`}
+        className={`${manrope.variable} ${merriweather.variable} ${sourceSans.variable} ${kalam.variable} ${nunito.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
           {children}

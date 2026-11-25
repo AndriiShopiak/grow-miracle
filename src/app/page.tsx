@@ -23,11 +23,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header з логотипом та навігацією */}
-      <header className="bg-primary shadow-lg">
+      <header className="bg-[#FDFAE8] border-b border-primary/20 shadow-md">
         <div className="container mx-auto px-2 sm:px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex items-center justify-center bg-white flex-shrink-0 ring-1 ring-primary/30">
                 <Image
                   src="/logo/khurmovyi_sad_icon.jpg"
                   alt="Логотип Хурмового саду"
@@ -40,8 +40,11 @@ export default function Home() {
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-lg sm:text-2xl font-bold text-white truncate">Хурмовий сад</h1>
-                <p className="text-white text-xs sm:text-sm truncate">Вирощуємо майбутній урожай разом</p>
+                <h1 className="text-xl sm:text-3xl leading-tight truncate">
+                  <span className="font-logo font-black tracking-tight text-[#1F4D2A]">Хурмовий</span>{" "}
+                  <span className="font-logo font-black tracking-tight text-accent">сад</span>
+                </h1>
+                <p className="font-logo font-bold italic text-[#2F5D36] text-xs sm:text-base truncate">Вирощуємо майбутній урожай разом</p>
               </div>
             </div>
             
@@ -49,19 +52,19 @@ export default function Home() {
             <nav className="hidden md:flex space-x-6">
               <button 
                 onClick={() => scrollToSection('products')} 
-                className="text-white hover:text-light-green transition-colors"
+                className="font-semibold text-secondary hover:text-accent transition-colors"
               >
                 Продукція
               </button>
               <button 
                 onClick={() => scrollToSection('about')} 
-                className="text-white hover:text-light-green transition-colors"
+                className="font-semibold text-secondary hover:text-accent transition-colors"
               >
                 Про нас
               </button>
               <button 
                 onClick={() => scrollToSection('contact')} 
-                className="text-white hover:text-light-green transition-colors"
+                className="font-semibold text-secondary hover:text-accent transition-colors"
               >
                 Контакти
               </button>
@@ -69,7 +72,7 @@ export default function Home() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white p-2"
+              className="md:hidden text-secondary p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -85,23 +88,23 @@ export default function Home() {
 
           {/* Mobile Navigation Menu */}
           {isMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 border-t border-white/20">
+            <nav className="md:hidden mt-4 pb-4 border-t border-primary/20">
               <div className="flex flex-col space-y-4 pt-4">
                 <button 
                   onClick={() => scrollToSection('products')} 
-                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                  className="font-semibold text-secondary hover:text-accent transition-colors text-left py-2"
                 >
                   Продукція
                 </button>
                 <button 
                   onClick={() => scrollToSection('about')} 
-                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                  className="font-semibold text-secondary hover:text-accent transition-colors text-left py-2"
                 >
                   Про нас
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')} 
-                  className="text-white hover:text-light-green transition-colors text-left py-2"
+                  className="font-semibold text-secondary hover:text-accent transition-colors text-left py-2"
                 >
                   Контакти
                 </button>
